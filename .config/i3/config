@@ -155,7 +155,7 @@ bindsym $mod+a focus parent
 # -------------------------------------
 bindsym $mod+o exec --no-startup-id gedit;\
     workspace number $ws8
-bindsym $mod+Return exec alacritty # i3-sensible-terminal (default)
+bindsym $mod+Return exec --no-startup-id alacritty # i3-sensible-terminal (default)
 
 # Sreenshots
 
