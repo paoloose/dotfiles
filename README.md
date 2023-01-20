@@ -47,3 +47,10 @@ dotfiles status
 dotfiles commit -m 'add somefile'
 dotfiles push origin main
 ```
+
+## Inspiration
+
+Awesome repos that I've used as inspiration:
+
+- <https://github.com/addy-dclxvi/i3-starterpack>
+- <https://github.com/adi1090x/rofi>
