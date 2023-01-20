@@ -204,6 +204,16 @@ for_window [class="Alacritty" workspace="1"] floating enable
 bar {
     # status_command i3status
     # status_command i3status -c ~/.config/i3status/config
+
+    # Avoid switching workspaces when scrolling
+    bindsym button4 nop
+    bindsym button5 nop
+    # deprecated:
+    #wheel_up_cmd nop
+    #wheel_down_cmd nop
+
+    workspace_buttons yes
+
     status_command ~/.config/i3/i3status.sh
     position bottom
     colors {
