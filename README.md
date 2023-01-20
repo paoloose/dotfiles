@@ -11,6 +11,8 @@ Terminal: [alacritty](https://alacritty.org/) with ([zsh](https://www.zsh.org/) 
 
 See `.scripts/setup.sh` for setup for new environments.
 
+
+
 ## How to create your own dotfiles repo
 
 Small guide here. See [this](https://news.ycombinator.com/item?id=11070797) for more info.
@@ -36,6 +38,12 @@ dotfiles branch -M main
 dotfiles remote add origin <repo-url>
 ```
 
-Resources
-- https://news.ycombinator.com/item?id=11070797
+Usage
 
+```bash
+# In your home directory
+dotfiles add .somefile
+dotfiles status
+dotfiles commit -m 'add somefile'
+dotfiles push origin main
+```
