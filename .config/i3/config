@@ -134,9 +134,13 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+s layout stacking # using $mod+s for scratchpads
+bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
+
+# scratchpads
+bindsym $mod+Shift+s move scratchpad
+bindsym $mod+s scratchpad show
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -184,11 +188,14 @@ for_window [class="pentablet"] floating enable
 for_window [class="Gnome-calculator"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
+#for_window [workspace="1" class="Alacritty"] floating enable
+
 # for window in workspace 1
 for_window [class="Code"] border pixel 0
 #for_window [class="^.*"] border pixel 1
 for_window [class="Google-chrome"] hide_edge_borders both
-for_window [workspace="1" class="Alacritty"] floating enable
+for_window [class="Leafpad"] border pixel 1
+
 # Layout tabbed for workspace 1, this may be annoying for others
 # but it's very useful for me
 for_window [workspace="1"] layout tabbed
@@ -276,7 +283,7 @@ exec_always --no-startup-id $(which feh) --bg-fill ~/Pictures/Wallpapers/cat_lea
 # set keyboard layout
 exec setxkbmap -layout es -option grp:alt_shift_toggle
 # for english keyboard
-# exec "setxkbmap -layout us,de -option grp:alt_shift_toggle"
+# exec setxkbmap -layout us,de -option grp:alt_shift_toggle
 
 exec --no-startup-id compton
 
