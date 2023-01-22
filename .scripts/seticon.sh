@@ -38,7 +38,8 @@ main() {
     local app_command           # (set or unset)
     local show_preview=true     # Show preview of the icon (only in 'set' mode)
     local overwrite_icons=false # Overwrite icons when (only in 'set' mode)
-    local image_converted=false # If the image was converted to .png
+
+    local image_was_converted=false # If the image was converted to .png
 
     # Get the input from the user and validate it
     get_input $@
@@ -140,7 +141,7 @@ main() {
     fi
 
     # If image was converted to .png, remove the temporary file
-    if [ "$image_converted" ]; then
+    if $image_was_converted; then
         rm -f "$icon_file"
     fi
 
@@ -225,7 +226,7 @@ function get_input() {
                 exit_invalid "failed to convert '$icon_file' to png"
             fi
             icon_file="$icon_file.png"
-            image_converted=true
+            image_was_converted=true
         elif [ ! -f "$icon_file" ]; then
             exit_invalid "file '$icon_file' not found"
         fi
