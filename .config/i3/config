@@ -169,7 +169,7 @@ bindsym $mod+Return exec --no-startup-id alacritty # i3-sensible-terminal (defau
 
 # Sreenshots
 
-# -- with scrot (powerful) 'sudo apt install scrot' --
+# -- with scrot (more powerful) 'sudo apt install scrot' --
 #       (Print) screenshot to /tmp folder 'ss'
 bindsym --release Print\
     exec --no-startup-id "mkdir -p /tmp/ss;\
@@ -185,9 +185,9 @@ bindsym --release Shift+Print\
 
 # ---- with import (from imagemagick tools suite) ----
 # bindsym --release Print\
-    exec "f=$(date +%Y-%m-%d_%H-%M-%S);\
-    import $ss_path/$f.png &&\
-    xclip -selection clipboard -t image/png -i $ss_path/$f.png"
+   # exec "f=$(date +%Y-%m-%d_%H-%M-%S);\
+   # import $ss_path/$f.png &&\
+   # xclip -selection clipboard -t image/png -i $ss_path/$f.png"
 
 # Window capture
 for_window [class="pentablet"] floating enable
