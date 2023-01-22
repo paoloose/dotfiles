@@ -38,6 +38,8 @@ bindsym $mod+p exec --no-startup-id ~/.config/rofi/launchers/type-4/launcher.sh
 # ------------ Workspaces -------------
 # -------------------------------------
 
+workspace_auto_back_and_forth yes
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1  "1:  "
@@ -89,9 +91,9 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit i3 shor
 bindsym $mod+r mode "resize"
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
-    bindsym Left resize shrink width 1 px or 1 ppt
-    bindsym Down resize grow height 1 px or 1 ppt
-    bindsym Up resize shrink height 1 px or 1 ppt
+    bindsym Left  resize shrink width 1 px or 1 ppt
+    bindsym Down  resize grow height 1 px or 1 ppt
+    bindsym Up    resize shrink height 1 px or 1 ppt
     bindsym Right resize grow width 1 px or 1 ppt
 
     # back to normal: Enter or Escape or $mod+r
@@ -106,7 +108,8 @@ mode "resize" {
 # --------- Window management ---------
 # -------------------------------------
 
-bindsym $mod+m bar mode toggle
+# Hide borders whe fullscreen with only one tab
+#hide_edge_borders smart
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -135,12 +138,14 @@ bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+s layout stacking # using $mod+s for scratchpads
-bindsym $mod+t layout tabbed
+bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# scratchpads
+# ---- Scratchpads ----
+# https://i3wm.org/docs/userguide.html#_scratchpad
 bindsym $mod+Shift+s move scratchpad
 bindsym $mod+s scratchpad show
+# See Applications to see scratchpad shortcuts
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -157,8 +162,9 @@ bindsym $mod+a focus parent
 # -------------------------------------
 # ---------- Applications -------------
 # -------------------------------------
-bindsym $mod+o exec --no-startup-id gedit;\
-    workspace number $ws8
+
+# Obsidian workspace
+bindsym $mod+o workspace number $ws8
 bindsym $mod+Return exec --no-startup-id alacritty # i3-sensible-terminal (default)
 
 # Sreenshots
@@ -200,9 +206,17 @@ for_window [class="Leafpad"] border pixel 1
 # but it's very useful for me
 for_window [workspace="1"] layout tabbed
 
+# For applications that I often use with scratchpad features
+# See Window management > scratchpad
+bindsym $mod+n [class="Leafpad"] scratchpad show
+bindsym $mod+t [class="Alacritty"] scratchpad show
+
 # -----------------------------------------
 # -------------- Bar config ---------------
 # -----------------------------------------
+
+# Toggle bar view
+bindsym $mod+m bar mode toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
