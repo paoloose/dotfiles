@@ -277,7 +277,7 @@ function list_applications_in_system() {
         # Find all '.desktop' entries in the '$data_dir'
         # Redirect `stderr` to '/dev/null' because not all directories always exist
         for desk_file in $(ls $data_dir/applications 2> /dev/null); do
-            all_desktop_files+=" $data_dir/$desk_file"
+            all_desktop_files+=" $data_dir/applications/$desk_file"
         done
     done
     # Replace spaces with new lines
