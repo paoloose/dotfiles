@@ -35,9 +35,10 @@ main() {
     local path_to_icons # Path to the icons directory (usually /usr/share/icons)
                         # Is resolved to ../icons/hicolor
 
-    local app_command          # (set or unset)
-    local show_preview=true    # Show preview of the icon (only in 'set' mode)
+    local app_command           # (set or unset)
+    local show_preview=true     # Show preview of the icon (only in 'set' mode)
     local overwrite_icons=false # Overwrite icons when (only in 'set' mode)
+    local image_converted=false # If the image was converted to .png
 
     # Get the input from the user and validate it
     get_input $@
@@ -138,6 +139,11 @@ main() {
         done
     fi
 
+    # If image was converted to .png, remove the temporary file
+    if [ "$image_converted" ]; then
+        rm -f "$icon_file"
+    fi
+
     echo $'\nUpdating icons cache...'
     gtk-update-icon-cache -f -t "$path_to_icons"
 }
@@ -214,7 +220,12 @@ function get_input() {
         # Validate second argument ($2) <icon.png>
         icon_file="$2"
         if [ "${icon_file: -4}" != ".png" ]; then
-            exit_invalid "file '$icon_file' must have image/png type"
+            convert $icon_file $icon_file.png
+            if [ $? != 0 ]; then
+                exit_invalid "failed to convert '$icon_file' to png"
+            fi
+            icon_file="$icon_file.png"
+            image_converted=true
         elif [ ! -f "$icon_file" ]; then
             exit_invalid "file '$icon_file' not found"
         fi
@@ -308,6 +319,7 @@ Options:
   -h, --help        Show this help message and exit
 
 Run with sudo when needed.
+If icon is not a .png file, it will be converted on the fly.
 Refer to https://wiki.archlinux.org/title/desktop_entries
 for more information about .desktop files.
 "
