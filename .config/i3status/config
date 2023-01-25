@@ -7,22 +7,26 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-    colors = true
-    interval = 1
     output_format = "i3bar"
+    colors = true
     markup = pango
+    color_good = "#50FA7B"
+    color_degraded = "#F1FA8C"
+    color_bad = "#FF5555"
 }
 
-order += "ipv6"
-#order += "wireless _first_"
-order += "ethernet _first_"
 #order += "battery all"
+#order += "wireless _first_"
+order += "tztime holder__hey_man"
+
+order += "ipv6"
+order += "ethernet _first_"
 order += "disk /"
 order += "load"
 order += "memory"
+order += "volume master"
 order += "tztime local"
 
-order += "tztime holder__hey_man"
 
 tztime holder__hey_man {
     format = "holder__hey_man"
@@ -59,7 +63,17 @@ memory {
     #prefix_type = "decimal"
 }
 
+volume master {
+    format = "♪ %volume"
+    format_muted = "♪ muted (%volume)"
+    device = "pulse"
+    #device = "default"
+    mixer = "Master"
+    mixer_idx = 0
+}
+
 tztime local {
-    format_time = "%a %m/%d %H:%M:%S"
-    format = "%time"
+    locale = "en_US.UTF-8"
+    format = " %a %m/%d %H:%M:%S"
+    #format = " %a %-d %b %H:%M:%S"
 }
