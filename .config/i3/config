@@ -12,15 +12,31 @@ font pango:monospace 10
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
+# class                  border  backgr. text    indicator child_border
+client.focused           #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive  #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused         #333333 #222222 #888888 #292d2e   #222222
+client.urgent            #2f343a #900000 #ffffff #900000   #900000
+client.placeholder       #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ff0000
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%+
-bindsym XF86AudioMute exec amixer set Master toggle
+# bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+# bindsym XF86AudioLowerVolume exec amixer -q set Master 5%+
+# bindsym XF86AudioMute exec amixer set Master toggle
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # -------------------------------------
 # --------- Program launcher ----------
 # -------------------------------------
+#           ( dmenu & rofi )
+
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
 #   bindsym $mod+d exec "dmenu_run -i -p '~'"
@@ -38,43 +54,44 @@ bindsym $mod+p exec --no-startup-id ~/.config/rofi/launchers/type-4/launcher.sh
 # ------------ Workspaces -------------
 # -------------------------------------
 
-workspace_auto_back_and_forth yes
+# workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1  "1:  "
-set $ws2  "2:  "
-set $ws3  "3:  "
-set $ws4  "4:  "
-set $ws5  "5:  "
-set $ws6  "6:  "
-set $ws7  "7:  "
-set $ws8  "8:  "
-set $ws9  "9:  "
-set $ws10 "10: ? "
+set $ws2  "2:  "
+set $ws3  "3:  "
+set $ws4  "  4  "
+set $ws5  "  5  "
+set $ws6  "  6  "
+set $ws7  "  7  "
+set $ws8  "8:  "
+set $ws9  "9:  "
+set $ws10 "etc"
 
-bindsym $mod+1 workspace number $ws1
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1;  workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2;  workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3;  workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4;  workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5;  workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6;  workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7;  workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8;  workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9;  workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
 
 # Navigate between workspaces (love this one)
 bindsym $mod+Control+Left  workspace prev
@@ -85,21 +102,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit i3 shortcut. You are about to fuck up your current X session.' -B 'Indeedº, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
-bindsym $mod+r mode "resize"
-mode "resize" {
-    # These bindings trigger as soon as you enter the resize mode
-    bindsym Left  resize shrink width 1 px or 1 ppt
-    bindsym Down  resize grow height 1 px or 1 ppt
-    bindsym Up    resize shrink height 1 px or 1 ppt
-    bindsym Right resize grow width 1 px or 1 ppt
-
-    # back to normal: Enter or Escape or $mod+r
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You ressed the exit i3 shortcut. You are about to fuck up your current X session.' -B 'Indeed, exit i3' 'i3-msg exit'"
 
 # Tip: to see class name of a window, run `xprop` and click on the window.
 # class name is in WM_CLASS(STRING) property (the second string)
@@ -159,12 +162,37 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# ---- Modes ----
+bindsym $mod+r mode "resize"
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
+    bindsym Left  resize shrink width 1 px or 1 ppt
+    bindsym Down  resize grow height 1 px or 1 ppt
+    bindsym Up    resize shrink height 1 px or 1 ppt
+    bindsym Right resize grow width 1 px or 1 ppt
+
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Control+m mode "window modifiers [s]ticky [b]order [i]con [g]aps"
+mode "window modifiers [s]ticky [b]order [i]con [g]aps" {
+    bindsym s sticky            toggle, mode "default"
+    bindsym b border            toggle, mode "default"
+    bindsym i title_window_icon toggle, mode "default"
+    bindsym g gaps inner all    toggle 15, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 # -------------------------------------
 # ---------- Applications -------------
 # -------------------------------------
 
 # Obsidian workspace
-bindsym $mod+o workspace number $ws8
+bindsym $mod+o workspace $ws8
 bindsym $mod+Return exec --no-startup-id alacritty # i3-sensible-terminal (default)
 
 # Sreenshots
@@ -190,16 +218,22 @@ bindsym --release Shift+Print\
    # xclip -selection clipboard -t image/png -i $ss_path/$f.png"
 
 # Window capture
-for_window [class="pentablet"] floating enable
-for_window [class="Gnome-calculator"] floating enable
-for_window [window_role="pop-up"] floating enable
+for_window [all]                       title_format "%title | %class"
+for_window [class="pentablet"]         floating enable
+for_window [class="Gnome-calculator"]  floating enable
+for_window [class="Pqiv"]              floating enable # transparent image viewer
+for_window [window_role="pop-up"]      floating enable
 for_window [window_role="task_dialog"] floating enable
+for_window [class="vlc"]               border none, floating enable
+for_window [class="Xournalpp"]         border none
+
 #for_window [workspace="1" class="Alacritty"] floating enable
 
 # for window in workspace 1
 for_window [class="Code"] border pixel 0
 #for_window [class="^.*"] border pixel 1
 for_window [class="Google-chrome"] hide_edge_borders both
+
 for_window [class="Leafpad"] border pixel 1
 
 # Layout tabbed for workspace 1, this may be annoying for others
@@ -211,6 +245,17 @@ for_window [workspace="1"] layout tabbed
 bindsym $mod+n [class="Leafpad"] scratchpad show
 bindsym $mod+t [class="Alacritty"] scratchpad show
 
+mode "pets: [t]ux [w]aifu [n]eko [g]ato" {
+    bindsym t exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/tux.png, mode "default"
+    bindsym w exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/waifu.png, mode "default"
+    bindsym n exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/neko.png, mode "default"
+    bindsym g exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/gato.png, mode "default"
+
+    bindsym Escape mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+Shift+m mode "pets: [t]ux [w]aifu [n]eko [g]ato"
+
 # -----------------------------------------
 # -------------- Bar config ---------------
 # -----------------------------------------
@@ -220,19 +265,13 @@ bindsym $mod+m bar mode toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#     status_command i3status
-#     # status_command i3status -c ~/.config/i3status/config
-#     # status_command ~/.config/i3/i3status.sh
-#     position bottom
-#     workspace_buttons yes
-# }
 
 bar {
     # status_command i3status
     # status_command i3status -c ~/.config/i3status/config
 
     # Avoid switching workspaces when scrolling
+    status_command ~/.config/i3/i3status.sh
     bindsym button4 nop
     bindsym button5 nop
     # deprecated:
@@ -241,7 +280,6 @@ bar {
 
     workspace_buttons yes
 
-    status_command ~/.config/i3/i3status.sh
     position bottom
     colors {
     #     background #2f343f
@@ -252,7 +290,7 @@ bar {
     #     focused_workspace       #2f343f #bf616a #d8dee8
     #     active_workspace        #2f343f #2f343f #d8dee8
     #     inactive_workspace      #2f343f #2f343f #d8dee8
-    #    urgent_workspace       #2f343f #ebcb8b #2f343f
+    #     urgent_workspace       #2f343f #ebcb8b #2f343f
     }
 }
 
@@ -261,18 +299,18 @@ bar {
 # -----------------------------------------
 
 mode "[l]ock [s]uspend [r]eboot [p]oweroff" {
-    bindsym l exec i3lock, mode "default"
-    bindsym s exec systemctl suspend, mode "default"
-    bindsym r exec systemctl reboot, mode "default"
-    bindsym p exec systemctl poweroff, mode "default"
-    bindsym c mode "default"
+    bindsym l exec --no-startup-id i3lock -c 25212b, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym p exec --no-startup-id systemctl poweroff, mode "default"
+
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
 bindsym $mod+Control+Delete mode "[l]ock [s]uspend [r]eboot [p]oweroff"
 
 # -----------------------------------------
-# ------------ Startup config -------------
+# ----------- Startup programs ------------
 # -----------------------------------------
 
 # Start XDG autostart .desktop files using dex. See also
@@ -284,6 +322,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
+# (Not working for me)
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
@@ -291,15 +330,27 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # choose your wallpaper here (!)
-# sudo apt install feh
+# $ sudo apt install feh
 exec_always --no-startup-id $(which feh) --bg-fill ~/Pictures/Wallpapers/cat_leaves_2.png
 
 # set keyboard layout
-exec setxkbmap -layout es -option grp:alt_shift_toggle
+exec --no-startup-id setxkbmap -layout es -option grp:alt_shift_toggle
 # for english keyboard
 # exec setxkbmap -layout us,de -option grp:alt_shift_toggle
 
-exec --no-startup-id compton
+# exec --no-startup-id compton --config ~/.config/.compton.conf
+exec --no-startup-id picom --config ~/.config/picom/picom.conf
+
+# exec --no-startup-id
+exec --no-startup-id "notify-send \
+    --urgency=low \
+    --expire-time=10000 \
+    --icon=~/.config/i3/pets/neko.png \
+    'Welcome!!!' \
+    'Las distracciones son efímeras, pero el código abierto es para siempre.'"
+
+# GAPS
+
 
 # Note:
 # 'exec' is executed on startup
