@@ -13,6 +13,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # Use colors for `less`
 export LESS='-R --use-color -Dd+r$Du+b'
 
+# Disable microsoft spyware
+export DOTNET_CLI_TELEMETRY_OPTOUT="1"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
