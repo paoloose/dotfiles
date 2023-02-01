@@ -50,7 +50,7 @@ function hey_man {
   fi
 }
 
-i3status | (read line; echo "$line"; read line ; echo "$line" ; read line ; echo "$line" ; while true
+i3status --config="~/.config/i3status/config" | (read line; echo "$line"; read line ; echo "$line" ; read line ; echo "$line" ; while true
 do
   read line
   json_array="$(echo $line | sed -e 's/^,//')"
