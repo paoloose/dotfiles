@@ -84,9 +84,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 
 # https://github.com/ohmyzsh/ohmyzsh#plugins
-plugins=(git
-	pip
-)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,7 +93,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -112,22 +110,15 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Appimages
-# alias obsidian="Desktop/Obsidian-1.0.3.AppImage </dev/null &>/dev/null &"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Paths
 # fnm
-export PATH=$HOME/.fnm:$HOME/.scripts:$PATH
-eval "`fnm env`"
+export PATH=$HOME/.fnm:$HOME/.scripts:$HOME/Downloads/dotnet-sdk-7.0.102-linux-x64:$PATH
+eval "$(fnm env)"
 
 # Aliases
 # add new alias with echo alias myalias='cmd' >> ~/.bashrc
-alias obsidian="Desktop/Obsidian-1.0.3.AppImage </dev/null &>/dev/null &"
 alias dotfiles="/usr/bin/git --work-tree=$HOME --git-dir=$HOME/.dotfiles"
