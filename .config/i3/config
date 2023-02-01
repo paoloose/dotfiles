@@ -231,6 +231,7 @@ for_window [class="Xournalpp"]         border none
 
 # for window in workspace 1
 for_window [class="Code"] border pixel 0
+for_window [class="Pqiv"] border pixel 0
 #for_window [class="^.*"] border pixel 1
 for_window [class="Google-chrome"] hide_edge_borders both
 
@@ -245,16 +246,17 @@ for_window [workspace="1"] layout tabbed
 bindsym $mod+n [class="Leafpad"] scratchpad show
 bindsym $mod+t [class="Alacritty"] scratchpad show
 
-mode "pets: [t]ux [w]aifu [n]eko [g]ato" {
+bindsym $mod+Shift+m mode "pets: [t]ux [w]aifu [n]eko [g]ato [u]bunchu"
+mode "pets: [t]ux [w]aifu [n]eko [g]ato [u]bunchu" {
     bindsym t exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/tux.png, mode "default"
     bindsym w exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/waifu.png, mode "default"
     bindsym n exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/neko.png, mode "default"
     bindsym g exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/gato.png, mode "default"
+    bindsym u exec --no-startup-id pqiv --transparent-background -i ~/.config/i3/pets/ubunchu.png, mode "default"
 
     bindsym Escape mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+m mode "pets: [t]ux [w]aifu [n]eko [g]ato"
 
 # -----------------------------------------
 # -------------- Bar config ---------------
