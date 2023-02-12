@@ -114,6 +114,10 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You ressed the exit i3 short
 # Hide borders whe fullscreen with only one tab
 #hide_edge_borders smart
 
+# Avoid scrolling on tabs
+bindsym --border button4 nop
+bindsym --border button5 nop
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -191,8 +195,6 @@ mode "window modifiers [s]ticky [b]order [i]con [g]aps" {
 # ---------- Applications -------------
 # -------------------------------------
 
-# Obsidian workspace
-bindsym $mod+o workspace $ws8
 bindsym $mod+Return exec --no-startup-id alacritty # i3-sensible-terminal (default)
 
 # Sreenshots
@@ -234,6 +236,7 @@ for_window [class="Code"] border pixel 0
 for_window [class="Pqiv"] border pixel 0
 #for_window [class="^.*"] border pixel 1
 for_window [class="Google-chrome"] hide_edge_borders both
+for_window [class="Google-chrome"] border none
 
 for_window [class="Leafpad"] border pixel 1
 
