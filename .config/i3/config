@@ -273,10 +273,9 @@ bindsym $mod+m bar mode toggle
 
 bar {
     # status_command i3status
-    # status_command i3status -c ~/.config/i3status/config
+    status_command i3status -c ~/.config/i3status/config
 
     # Avoid switching workspaces when scrolling
-    status_command ~/.config/i3/i3status.sh
     bindsym button4 nop
     bindsym button5 nop
     # deprecated:

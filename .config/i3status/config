@@ -17,9 +17,8 @@ general {
 
 #order += "battery all"
 #order += "wireless _first_"
-#order += "tztime holder__hey_man"
 
-order += "ipv6"
+#order += "ipv6"
 order += "ethernet _first_"
 order += "disk /"
 order += "load"
@@ -27,10 +26,6 @@ order += "memory"
 order += "volume master"
 order += "tztime local"
 
-
-#tztime holder__hey_man {
-#    format = "holder__hey_man"
-#}
 
 #wireless _first_ {
 #   format_up = "W: (%quality at %essid) %ip"
@@ -67,7 +62,6 @@ volume master {
     format = "♪ %volume"
     format_muted = "♪ muted (%volume)"
     device = "pulse"
-    #device = "default"
     mixer = "Master"
     mixer_idx = 0
 }

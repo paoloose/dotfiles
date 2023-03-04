@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# note: This script is currently unused
 
 # function parse_i3_status {
 #     read version
@@ -27,7 +29,7 @@ function update_holder {
 
   local instance="$1"
   local replacement="$2"
-  echo "$json_array" | jq --argjson arg_j "$replacement" "(.[] | (select(.instance==\"$instance\"))) |= \$arg_j" 
+  echo "$json_array" | jq --argjson arg_j "$replacement" "(.[] | (select(.instance==\"$instance\"))) |= \$arg_j"
 }
 
 function remove_holder {
