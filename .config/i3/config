@@ -335,7 +335,7 @@ exec --no-startup-id nm-applet
 
 # choose your wallpaper here (!)
 # $ sudo apt install feh
-exec_always --no-startup-id $(which feh) --bg-fill ~/Pictures/Wallpapers/cat_leaves_2.png
+exec_always --no-startup-id $(which feh) --bg-fill ~/.wallpapers/cat_leaves_2.png
 
 # set keyboard layout
 exec --no-startup-id setxkbmap -layout es -option grp:alt_shift_toggle
