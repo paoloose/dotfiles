@@ -195,7 +195,7 @@ mode "window modifiers [s]ticky [b]order [i]con [g]aps" {
 # ---------- Applications -------------
 # -------------------------------------
 
-bindsym $mod+Return exec --no-startup-id alacritty # i3-sensible-terminal (default)
+bindsym $mod+Return exec --no-startup-id x-terminal-emulator
 
 # Sreenshots
 
