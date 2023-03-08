@@ -68,6 +68,6 @@ volume master {
 
 tztime local {
     locale = "en_US.UTF-8"
-    format = " %a %m/%d %H:%M:%S"
-    #format = " %a %-d %b %H:%M:%S"
+    format = "  %a %m/%d %H:%M:%S"
+    #format = "  %a %-d %b %H:%M:%S"
 }
