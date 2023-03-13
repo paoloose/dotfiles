@@ -8,7 +8,6 @@
 | os            | debian 11        |
 | terminal      | kitty            |
 | shell         | zsh + p10k       |
-| editor        | vscode + nano    |
 | compositor    | picom            |
 | launcher      | rofi             |
 | screen locker | betterlockscreen |
@@ -73,7 +72,8 @@ Start the X session with `startx` and you should be good to go.
 Setup the kitty terminal
 
 ```sh
-# Not sure why but the installer was better (on startup time) than the distributed package for debian (can confirm this)
+# Not sure why but the binary in the installer was faster on startup time than
+# the distributed package for debian (can't confirm this)
 # see https://sw.kovidgoyal.net/kitty/binary/#binary-install
 # sudo apt install kitty
 
@@ -88,9 +88,7 @@ Thinks you might want to configure:
 - A network manager like [nm-applet](https://wiki.debian.org/NetworkManager).
 - The bluetooth, see [this](https://wiki.debian.org/BluetoothUser).
 - Your mouse sensitivity, see [this](https://askubuntu.com/a/1051759).
-- Your keyboard layout:
-- I use [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen#installation)
-  as a *better* replacement for i3lock.
+- Your keyboard layout: `
 
   ```sh
   localectl list-x11-keymap-layouts # to see available layouts
@@ -98,11 +96,13 @@ Thinks you might want to configure:
   localectl set-x11-keymap <layout>
   localectl set-x11-keymap <layout> <variant>
   ```
+- A lock screen, I use [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen#installation)
+  as a *better* replacement for i3lock.
 
-- Install recommended packages for your hardware.
+- The recommended packages (firmware) for your hardware.
 
   - For nvidia, see [Nvidia Drivers for Debian](https://wiki.debian.org/NvidiaGraphicsDrivers).
-  - For other hardware such as AMD see [Debian graphics card](https://wiki.debian.org/GraphicsCard).
+  - For other such as AMD see [Debian graphics card](https://wiki.debian.org/GraphicsCard).
 
 ## How to create your own dotfiles repo
 
