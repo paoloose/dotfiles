@@ -281,8 +281,12 @@ function find_path_to_icons() {
 # (XDG_DATA_DIRS is a colon-separated list of directories)
 # For more information refer to:
 # https://specifications.freedesktop.org/menu-spec/menu-spec-latest.html#paths
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html#variables
 function list_applications_in_system() {
     local data_dirs=$(printenv | grep XDG_DATA_DIRS)
+    case $var in
+          ""|*"\n"*) data_dirs="/usr/local/share/:/usr/share/"
+    esac
     local all_desktop_files=""
     for data_dir in $(echo $data_dirs | sed "s/:/ /g"); do
         data_dir="${data_dir%*/}"
