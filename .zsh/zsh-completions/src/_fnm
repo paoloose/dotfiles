@@ -1,0 +1,8 @@
+export PATH="/run/user/1000/fnm_multishells/163667_1678678989082/bin":$PATH
+export FNM_LOGLEVEL="info"
+export FNM_VERSION_FILE_STRATEGY="local"
+export FNM_MULTISHELL_PATH="/run/user/1000/fnm_multishells/163667_1678678989082"
+export FNM_DIR="/home/paolo/.config/local/share/fnm"
+export FNM_NODE_DIST_MIRROR="https://nodejs.org/dist"
+export FNM_ARCH="x64"
+rehash
