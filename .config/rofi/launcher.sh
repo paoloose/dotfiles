@@ -11,5 +11,5 @@ rofi \
     -modi "combi" \
     -combi-modi "drun,window" \
     -show combi \
-    -theme launcher.theme.rasi \
+    -theme theme.rasi \
     -sort
