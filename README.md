@@ -43,8 +43,8 @@ Before starting the X server, install some dependencies:
 
 ```sh
 sudo apt install sakura rofi picom dunst alsa-utils pulseaudio feh xclip
-libnotify-bin gnome-keyring gparted fonts-font-awesome devscripts curl
-wget mate-polkit-bin fonts-noto-color-emoji
+libnotify-bin gnome-keyring gparted fonts-font-awesome devscripts pqiv bc
+curl wget mate-polkit-bin fonts-noto-color-emoji
 ```
 
 And choose a web browser.
@@ -88,7 +88,7 @@ Thinks you might want to configure:
 - A network manager like [nm-applet](https://wiki.debian.org/NetworkManager).
 - The bluetooth, see [this](https://wiki.debian.org/BluetoothUser).
 - Your mouse sensitivity, see [this](https://askubuntu.com/a/1051759).
-- Your keyboard layout: `
+- Your keyboard layout:
 
   ```sh
   localectl list-x11-keymap-layouts # to see available layouts

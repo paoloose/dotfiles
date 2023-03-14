@@ -31,6 +31,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+# -- gaps
+gaps inner 8px
+smart_gaps on
+
 # -------------------------------------
 # --------- Program launcher ----------
 # -------------------------------------
@@ -84,6 +88,8 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
+workspace $ws1 gaps inner 0
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1;
 bindsym $mod+Shift+2 move container to workspace $ws2;
@@ -103,7 +109,7 @@ bindsym $mod+Control+Right workspace next
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec "i3-msg restart reload"
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You ressed the exit i3 shortcut. You are about to fuck up your current X session.' -B 'Indeed, exit i3' 'i3-msg exit'"
 
@@ -341,8 +347,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -c 25212
 exec --no-startup-id nm-applet
 
 # choose your wallpaper here (!)
-# $ sudo apt install feh
-exec_always --no-startup-id $(which feh) --bg-fill ~/.wallpapers/cat_leaves_2.png
+# sudo apt install feh
+exec_always --no-startup-id $(which feh) --bg-fill ~/.assets/wallpapers/2emr8x.riced.png
 
 # set keyboard layout
 exec --no-startup-id setxkbmap -layout es -option grp:alt_shift_toggle
@@ -359,9 +365,6 @@ exec --no-startup-id "notify-send \
     --icon=~/.config/i3/pets/neko.png \
     'Welcome!!!' \
     'Las distracciones son efímeras, pero el código abierto es para siempre.'"
-
-# GAPS
-# no
 
 # Note:
 # 'exec' is executed on startup
