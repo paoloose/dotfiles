@@ -48,10 +48,12 @@ cap () { tee /tmp/capture.out; }
 ret () { cat /tmp/capture.out; }
 
 # path
+export PATH=$HOME/.local/bin:$HOME/.config/local/share/fnm:/usr/local/bin:/usr/local/go/bin:$PATH
+
 if [ $USER = "root" ]; then
-    export PATH=$HOME/.local/bin:$HOME/.local/share/fnm:$PATH
+    export PATH=$HOME/.local/share/fnm:$PATH
 else
-    export PATH=$HOME/.local/bin:$HOME/.scripts:$HOME/.config/local/share/fnm:$PATH
+    export PATH=$HOME/.scripts:$HOME/.config/local/share/fnm:$PATH
 fi
 
 # -- fnm
