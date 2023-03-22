@@ -1,38 +1,21 @@
-# i3 config file (v4)
-#
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+# 🐢 i3 config file https://github.com/paoloose/dotfiles 🐢 #
+#        -- go to bottom to see the color scheme --         #
 
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:monospace 10
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# class                  border  backgr. text    indicator child_border
-client.focused           #4c7899 #285577 #ffffff #2e9ef4   #285577
-client.focused_inactive  #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused         #333333 #222222 #888888 #292d2e   #222222
-client.urgent            #2f343a #900000 #ffffff #900000   #900000
-client.placeholder       #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
-client.background       #ff0000
 
 # bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
 # bindsym XF86AudioLowerVolume exec amixer -q set Master 5%+
 # bindsym XF86AudioMute exec amixer set Master toggle
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # -- gaps
-gaps inner 8px
+gaps inner 6px
 smart_gaps on
 
 # -------------------------------------
@@ -72,7 +55,7 @@ set $ws3  "3:  "
 set $ws4  "  4  "
 set $ws5  "  5  "
 set $ws6  "  6  "
-set $ws7  "  7  "
+set $ws7  "7: 🐢"
 set $ws8  "8:  "
 set $ws9  "9:  "
 set $ws10 "etc"
@@ -120,8 +103,11 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You ressed the exit i3 short
 # --------- Window management ---------
 # -------------------------------------
 
-# Hide borders whe fullscreen with only one tab
-#hide_edge_borders smart
+default_border normal 1
+default_floating_border normal 2
+for_window [all] title_format "<small>%title | %class</small>"
+title_align center
+# hide_edge_borders smart
 
 # Avoid scrolling on tabs
 bindsym --border button4 nop
@@ -179,10 +165,14 @@ bindsym $mod+a focus parent
 bindsym $mod+r mode "resize"
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
-    bindsym Left  resize shrink width 1 px or 1 ppt
-    bindsym Down  resize grow height 1 px or 1 ppt
-    bindsym Up    resize shrink height 1 px or 1 ppt
-    bindsym Right resize grow width 1 px or 1 ppt
+    bindsym Left  resize shrink width 50 px or 50 ppt
+    bindsym Down  resize grow height 50 px or 50 ppt
+    bindsym Up    resize shrink height 50 px or 50 ppt
+    bindsym Right resize grow width 50 px or 50 ppt
+    bindsym Shift+Left   move left  50 px
+    bindsym Shift+Down   move down  50 px
+    bindsym Shift+Up     move up    50 px
+    bindsym Shift+Right  move right 50 px
 
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
@@ -230,36 +220,36 @@ bindsym --release Shift+Print\
    # xclip -selection clipboard -t image/png -i $ss_path/$f.png"
 
 # Window capture
-for_window [all]                       title_format "%title | %class"
-for_window [class="pentablet"]         floating enable
 for_window [class="Gnome-calculator"]  floating enable
-for_window [class="Pqiv"]              floating enable # transparent image viewer
-for_window [window_role="pop-up"]      floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [class="vlc"]               border none, floating enable
+for_window [class="Google-chrome"]     hide_edge_borders both
+for_window [class="Google-chrome"]     border none
+for_window [class="pentablet"]         floating enable
 for_window [class="Xournalpp"]         border none
-
-#for_window [workspace="1" class="Alacritty"] floating enable
-
-# for window in workspace 1
-for_window [class="Code"]      border pixel 0
-for_window [class="vscodium"]  border pixel 0
-for_window [class="kitty"] border pixel 2
-for_window [class="Pqiv"]  border pixel 0
-#for_window [class="^.*"]  border pixel 1
-for_window [class="Google-chrome"] hide_edge_borders both
-for_window [class="Google-chrome"] border none
-
-for_window [class="Leafpad"] border pixel 1
+for_window [class="vscodium"]          border none
+for_window [class="Leafpad"]           border pixel 1
+for_window [class="Polybar"]           gaps inner 0, gaps outer 0
+for_window [class="Gthumb"]            border none
+for_window [class="kitty"]             border pixel 2
+for_window [class="Pqiv"]              floating enable # transparent image viewer
+for_window [class="Code"]              border none
+for_window [class="Pqiv"]              border none
+for_window [class="vlc"]               border none, floating enable
+for_window [window_role="task_dialog"] floating enable;  border none
+for_window [window_role="Preferences"] floating enable;  border none
+for_window [window_role="pop-up"]      floating enable;  border none
+for_window [window_type="dialog"]      floating enable;  border none
+for_window [window_role="bubble"]      floating enable;  border none
+for_window [window_type="menu"]        floating enable;  border none
 
 # Layout tabbed for workspace 1, this may be annoying for others
 # but it's very useful for me
 for_window [workspace="1"] layout tabbed
+for_window [workspace="1" class="kitty"] floating enable
 
 # For applications that I often use with scratchpad features
 # See Window management > scratchpad
 bindsym $mod+n [class="Leafpad"] scratchpad show
-bindsym $mod+t [class="Alacritty"] scratchpad show
+bindsym $mod+t [class="kitty"] scratchpad show
 
 bindsym $mod+Shift+m mode "pets: [t]ux [w]aifu [n]eko [g]ato [u]bunchu"
 mode "pets: [t]ux [w]aifu [n]eko [g]ato [u]bunchu" {
@@ -274,40 +264,64 @@ mode "pets: [t]ux [w]aifu [n]eko [g]ato [u]bunchu" {
 }
 
 # -----------------------------------------
-# -------------- Bar config ---------------
+# ------- Bar config & Color theme --------
 # -----------------------------------------
 
 # Toggle bar view
 bindsym $mod+m bar mode toggle
+font pango:Hack Nerd Font 10
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-bar {
-    # status_command i3status
-    status_command i3status -c ~/.config/i3status/config
+set $black #000000
+set $dark  #1a1a1a
+set $gray1 #2f2f2f
+set $gray2 #393939
+set $gray3 #888888
+set $white #E5E5E5
 
+set $main #4e4558
+
+set $urgent    #a65757
+set $winborder #415157
+
+# class            bar_border  backgr   text    indicator win_border
+client.focused     $main       $main    $white  $main     $main
+client.unfocused   $black      $black   $gray3  $gray1    $dark
+client.urgent      $urgent     $urgent  $white  $urgent   $urgent
+client.placeholder $black      $dark    $white  $black    $dark
+client.background  $gray1
+
+client.focused_inactive $gray2  $dark  $gray3  $gray1  $gray2
+
+set $barborder  #8b7399
+set $mode_color #608f52
+
+bar {
+    colors {
+        background $dark
+        statusline #d3d7de
+        separator  #666666
+
+        # criteria         border      background  text
+        focused_workspace  $barborder  $barborder  $black
+        inactive_workspace $black      $black      $gray3
+        urgent_workspace   $urgent     $urgent     $black
+        binding_mode       $mode_color $mode_color $black
+
+        #active_workspace  active workspace button for multiple outputs
+    }
+    status_command i3status -c ~/.config/i3status/config
+    font pango:Noto Mono, JetBrainsMono Nerd Font 10
+    workspace_min_width 35
+    padding 1px 5px 1px 1px
+    strip_workspace_numbers no
+    workspace_buttons yes
+    position bottom
     # Avoid switching workspaces when scrolling
     bindsym button4 nop
     bindsym button5 nop
-    # deprecated:
-    #wheel_up_cmd nop
-    #wheel_down_cmd nop
-
-    workspace_buttons yes
-
-    position bottom
-    colors {
-    #     background #2f343f
-    #     statusline #2f343f
-    #     separator #4b5262
-
-    #     # colour of border, background, and text
-    #     focused_workspace       #2f343f #bf616a #d8dee8
-    #     active_workspace        #2f343f #2f343f #d8dee8
-    #     inactive_workspace      #2f343f #2f343f #d8dee8
-    #     urgent_workspace       #2f343f #ebcb8b #2f343f
-    }
 }
 
 # -----------------------------------------
@@ -348,7 +362,7 @@ exec --no-startup-id nm-applet
 
 # choose your wallpaper here (!)
 # sudo apt install feh
-exec_always --no-startup-id $(which feh) --bg-fill ~/.assets/wallpapers/2emr8x.riced.png
+exec_always --no-startup-id feh --bg-fill ~/.assets/wallpapers/wallhaven-x166ld.riced.png
 
 # set keyboard layout
 exec --no-startup-id setxkbmap -layout es -option grp:alt_shift_toggle

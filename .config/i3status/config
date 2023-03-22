@@ -10,15 +10,15 @@ general {
     output_format = "i3bar"
     colors = true
     markup = pango
-    color_good = "#50FA7B"
-    color_degraded = "#F1FA8C"
-    color_bad = "#FF5555"
+    color_good = "#B3C059"
+    color_degraded = "#F3C15E"
+    color_bad = "#CB5858"
+    separator = "="
 }
 
 #order += "battery all"
 #order += "wireless _first_"
 
-#order += "ipv6"
 order += "ethernet _first_"
 order += "disk /"
 order += "load"
@@ -26,15 +26,14 @@ order += "memory"
 order += "volume master"
 order += "tztime local"
 
-
 #wireless _first_ {
 #   format_up = "W: (%quality at %essid) %ip"
 #   format_down = "W: down"
 #}
 
 ethernet _first_ {
-    format_up = "%ip"
-    format_down = "no ethernet"
+    format_up = "🐢 %ip"
+    format_down = "🌚 no ethernet"
 }
 
 #battery all {
@@ -42,7 +41,8 @@ ethernet _first_ {
 #}
 
 disk "/" {
-    format = "%avail"
+    # format = "%avail"
+    format = "<span color='#F3C15E'>%avail</span>"
 }
 
 load {
@@ -51,16 +51,18 @@ load {
 
 memory {
     memory_used_method = "classical"
+    threshold_degraded = "25%"
+    threshold_critical = "10%"
     format = "%used RAM"
-    threshold_degraded = "10%"
-    threshold_critical = "5%"
-    format_degraded = "%used"
+    format_degraded = "%used RAM"
     #prefix_type = "decimal"
 }
 
 volume master {
-    format = "♪ %volume"
-    format_muted = "♪ muted (%volume)"
+    # format_muted = "♪ muted (%volume)"
+    # format = "♪ %volume"
+    format = "<span color='#ffab61'>♪ %volume</span>"
+    format_muted = "<span color='#CB5858'>♪ muted (%volume)</span>"
     device = "pulse"
     mixer = "Master"
     mixer_idx = 0
@@ -68,6 +70,6 @@ volume master {
 
 tztime local {
     locale = "en_US.UTF-8"
-    format = "  %a %m/%d %H:%M:%S"
+    format = " <span color='#bd9fcf'> %a %m/%d</span> <span color='#bd9fcf'>%H:%M:%S</span>"
     #format = "  %a %-d %b %H:%M:%S"
 }
