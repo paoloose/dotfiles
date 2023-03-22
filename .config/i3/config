@@ -165,14 +165,10 @@ bindsym $mod+a focus parent
 bindsym $mod+r mode "resize"
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
-    bindsym Left  resize shrink width 50 px or 50 ppt
-    bindsym Down  resize grow height 50 px or 50 ppt
-    bindsym Up    resize shrink height 50 px or 50 ppt
-    bindsym Right resize grow width 50 px or 50 ppt
-    bindsym Shift+Left   move left  50 px
-    bindsym Shift+Down   move down  50 px
-    bindsym Shift+Up     move up    50 px
-    bindsym Shift+Right  move right 50 px
+    bindsym Left  resize shrink width 20 px
+    bindsym Down  resize grow height 20 px
+    bindsym Up    resize shrink height 20 px
+    bindsym Right resize grow width 20 px
 
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
@@ -197,21 +193,23 @@ mode "window modifiers [s]ticky [b]order [i]con [g]aps" {
 #bindsym $mod+Return exec --no-startup-id x-terminal-emulator
 bindsym $mod+Return exec "kitty"
 
-# Sreenshots
+# -- Sreenshots
+
+# -- with flameshot (even more powerful) 'sudo apt install flameshot' --
+bindsym --no-startup-id --release Print            exec flameshot gui \
+    --path /tmp/ss --clipboard
+bindsym --no-startup-id --release shift+Print      exec flameshot gui \
+    --path ~/Pictures/Screenshots --clipboard
+bindsym --no-startup-id --release $mod+shift+Print exec flameshot gui \
+    --path /tmp/ss --delay 2000 --clipboard
 
 # -- with scrot (more powerful) 'sudo apt install scrot' --
-#       (Print) screenshot to /tmp folder 'ss'
-bindsym --release Print\
-    exec --no-startup-id "mkdir -p /tmp/ss;\
-    scrot -z --select --border --freeze '%Y:%m:%d:%H:%M:%S.png'\
-    -e 'mv $f /tmp/ss &&\
-    xclip -selection clipboard -t image/png -i /tmp/ss/$f'"
-#   (Shift+Print) screenshot to ~/Pictures/Screenshots
-bindsym --release Shift+Print\
-    exec --no-startup-id "mkdir -p ~/Pictures/Screenshots;\
-    scrot --select --border --freeze '%Y:%m:%d:%H:%M:%S.png'\
-    -e 'mv $f ~/Pictures/Screenshots &&\
-    xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/$f'"
+#        (Print) screenshot to ~/Pictures/Screenshots
+# bindsym --release Shift+Print\
+#     exec --no-startup-id "mkdir -p ~/Pictures/Screenshots;\
+#     scrot --select --border --freeze '%Y:%m:%d:%H:%M:%S.png'\
+#     -e 'mv $f ~/Pictures/Screenshots &&\
+#     xclip -selection clipboard -t image/png -i ~/Pictures/Screenshots/$f'"
 
 # ---- with import (from imagemagick tools suite) ----
 # bindsym --release Print\

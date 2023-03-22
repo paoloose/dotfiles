@@ -44,7 +44,7 @@ Before starting the X server, install some dependencies:
 ```sh
 sudo apt install sakura rofi picom dunst alsa-utils pulseaudio feh xclip
 libnotify-bin gnome-keyring gparted fonts-font-awesome devscripts pqiv bc
-curl wget mate-polkit-bin fonts-noto-color-emoji
+curl adwaita-qt flameshot wget mate-polkit-bin fonts-noto-color-emoji
 ```
 
 And choose a web browser.
