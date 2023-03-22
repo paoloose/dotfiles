@@ -231,8 +231,8 @@ for_window [class="Polybar"]           gaps inner 0, gaps outer 0
 for_window [class="Gthumb"]            border none
 for_window [class="kitty"]             border pixel 2
 for_window [class="Pqiv"]              floating enable # transparent image viewer
-for_window [class="Code"]              border none
 for_window [class="Pqiv"]              border none
+for_window [class="Code"]              border none
 for_window [class="vlc"]               border none, floating enable
 for_window [window_role="task_dialog"] floating enable;  border none
 for_window [window_role="Preferences"] floating enable;  border none
@@ -295,20 +295,22 @@ client.background  $gray1
 
 client.focused_inactive $gray2  $dark  $gray3  $gray1  $gray2
 
-set $barborder  #8b7399
-set $mode_color #608f52
+set $barcolor    #7f698c
+set $modecolor   #1e1e26
+set $statuscolor #e6dfef
+set $sepcolor    #666666
 
 bar {
     colors {
         background $dark
-        statusline #d3d7de
-        separator  #666666
+        statusline $statuscolor
+        separator  $sepcolor
 
         # criteria         border      background  text
-        focused_workspace  $barborder  $barborder  $black
+        focused_workspace  $barcolor   $barcolor   $black
         inactive_workspace $black      $black      $gray3
         urgent_workspace   $urgent     $urgent     $black
-        binding_mode       $mode_color $mode_color $black
+        binding_mode       $modecolor  $modecolor  $barcolor
 
         #active_workspace  active workspace button for multiple outputs
     }
