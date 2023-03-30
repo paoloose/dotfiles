@@ -3,7 +3,6 @@
 
 set $mod Mod4
 
-
 # bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
 # bindsym XF86AudioLowerVolume exec amixer -q set Master 5%+
 # bindsym XF86AudioMute exec amixer set Master toggle
@@ -107,7 +106,8 @@ default_border normal 1
 default_floating_border normal 2
 for_window [all] title_format "<small>%title | %class</small>"
 title_align center
-# hide_edge_borders smart
+#hide_edge_borders smart
+#smart_borders on
 
 # Avoid scrolling on tabs
 bindsym --border button4 nop
@@ -196,12 +196,14 @@ bindsym $mod+Return exec "kitty"
 # -- Sreenshots
 
 # -- with flameshot (even more powerful) 'sudo apt install flameshot' --
-bindsym --no-startup-id --release Print            exec flameshot gui \
+bindsym --release Print            exec --no-startup-id flameshot gui \
     --path /tmp/ss --clipboard
-bindsym --no-startup-id --release shift+Print      exec flameshot gui \
+
+bindsym --release shift+Print      exec --no-startup-id flameshot gui \
     --path ~/Pictures/Screenshots --clipboard
-bindsym --no-startup-id --release $mod+shift+Print exec flameshot gui \
-    --path /tmp/ss --delay 2000 --clipboard
+
+bindsym --release $mod+shift+Print exec --no-startup-id flameshot gui \
+    --path /tmp/ss --delay 2500 --clipboard
 
 # -- with scrot (more powerful) 'sudo apt install scrot' --
 #        (Print) screenshot to ~/Pictures/Screenshots
@@ -219,7 +221,6 @@ bindsym --no-startup-id --release $mod+shift+Print exec flameshot gui \
 
 # Window capture
 for_window [class="Gnome-calculator"]  floating enable
-for_window [class="Google-chrome"]     hide_edge_borders both
 for_window [class="Google-chrome"]     border none
 for_window [class="pentablet"]         floating enable
 for_window [class="Xournalpp"]         border none
@@ -232,6 +233,8 @@ for_window [class="Pqiv"]              floating enable # transparent image viewe
 for_window [class="Pqiv"]              border none
 for_window [class="Code"]              border none
 for_window [class="vlc"]               border none, floating enable
+for_window [class="sorthem"]           floating enable
+for_window [class="Trello Desktop"]    border none
 for_window [window_role="task_dialog"] floating enable;  border none
 for_window [window_role="Preferences"] floating enable;  border none
 for_window [window_role="pop-up"]      floating enable;  border none
@@ -241,13 +244,13 @@ for_window [window_type="menu"]        floating enable;  border none
 
 # Layout tabbed for workspace 1, this may be annoying for others
 # but it's very useful for me
-for_window [workspace="1"] layout tabbed
+for_window [workspace="1"]               layout tabbed
 for_window [workspace="1" class="kitty"] floating enable
 
 # For applications that I often use with scratchpad features
 # See Window management > scratchpad
 bindsym $mod+n [class="Leafpad"] scratchpad show
-bindsym $mod+t [class="kitty"] scratchpad show
+bindsym $mod+t [class="kitty"]   scratchpad show
 
 bindsym $mod+Shift+m mode "pets: [t]ux [w]aifu [n]eko [g]ato [u]bunchu"
 mode "pets: [t]ux [w]aifu [n]eko [g]ato [u]bunchu" {
