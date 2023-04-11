@@ -1,6 +1,6 @@
 # dotfiles
 
-![rice](./.assets/2023-03-14_rice.png)
+![rice](./.assets/2023-04-11_rice.png)
 
 | programs      | using            |
 | ------------- | ---------------- |
