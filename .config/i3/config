@@ -219,6 +219,10 @@ bindsym --release $mod+shift+Print exec --no-startup-id flameshot gui \
    # import $ss_path/$f.png &&\
    # xclip -selection clipboard -t image/png -i $ss_path/$f.png"
 
+# -- Screen zoom with https://github.com/tsoding/boomer
+
+bindsym $mod+z exec --no-startup-id boomer
+
 # Window capture
 for_window [class="Gnome-calculator"]  floating enable
 for_window [class="Google-chrome"]     border none
