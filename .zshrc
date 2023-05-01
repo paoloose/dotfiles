@@ -19,21 +19,20 @@ bindkey "^H" backward-delete-word # ctrl + backspace
 bindkey '^[[3;5~' delete-word # ctrl + delete
 
 # -- Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # -- colors for less
-
 export LESS='-R --use-color -Dd+r$Du+b'
 
 # -- Disable microsoft spyware for dotnet
-
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
-# -- Manual aliases
+# -- pyenv
+export PYENV_ROOT="$HOME/.pyenv"
 
+# -- Manual aliases
 alias ll='lsd -lh --group-dirs=first'
 alias la='lsd -a --group-dirs=first'
 alias l='lsd --group-dirs=first'
@@ -48,16 +47,17 @@ cap () { tee /tmp/capture.out; }
 ret () { cat /tmp/capture.out; }
 
 # path
-export PATH=$HOME/.local/bin:$HOME/.config/local/share/fnm:/usr/local/bin:/usr/local/go/bin:$PATH
+export PATH=$HOME/.config/local/share/fnm:/usr/local/bin:/usr/local/go/bin:/snap/bin:$HOME/.local/bin:$PATH
 
 if [ $USER = "root" ]; then
-    export PATH=$HOME/.local/share/fnm:$PATH
+    export PATH=/home/paolo/.local/bin:/home/paolo/.dotnet:$HOME/.local/share/fnm:$PATH
 else
-    export PATH=$HOME/.scripts:$HOME/.config/local/share/fnm:/snap/bin:$PATH
+    export PATH=$HOME/.scripts:/home/paolo/.dotnet:$HOME/.config/local/share/fnm:$PYENV_ROOT/bin:$PATH
 fi
 
-# -- fnm
+# -- init environments
 eval "`fnm env`"
+eval "$(pyenv init - >/dev/null 2>&1)"
 
 # -- pnpm
 export PNPM_HOME=$HOME/.config/local/share/pnpm
@@ -65,6 +65,10 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
+
+# -- deno
+export DENO_INSTALL="/home/paolo/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 # -- load plugins
 
