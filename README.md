@@ -96,6 +96,7 @@ Thinks you might want to configure:
   localectl set-x11-keymap <layout>
   localectl set-x11-keymap <layout> <variant>
   ```
+
 - A lock screen, I use [betterlockscreen](https://github.com/betterlockscreen/betterlockscreen#installation)
   as a *better* replacement for i3lock.
 
