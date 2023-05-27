@@ -229,7 +229,7 @@ for_window [class="Google-chrome"]     border none
 for_window [class="pentablet"]         floating enable
 for_window [class="Xournalpp"]         border none
 for_window [class="vscodium"]          border none
-for_window [class="Leafpad"]           border pixel 1
+for_window [class="Leafpad"]           border pixel 1, floating enable
 for_window [class="Polybar"]           gaps inner 0, gaps outer 0
 for_window [class="Gthumb"]            border none
 for_window [class="kitty"]             border pixel 2
@@ -307,7 +307,7 @@ set $sepcolor    #666666
 
 bar {
     colors {
-        background $dark
+        background $black
         statusline $statuscolor
         separator  $sepcolor
 
