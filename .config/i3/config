@@ -245,6 +245,7 @@ for_window [window_role="pop-up"]      floating enable;  border none
 for_window [window_type="dialog"]      floating enable;  border none
 for_window [window_role="bubble"]      floating enable;  border none
 for_window [window_type="menu"]        floating enable;  border none
+for_window [floating]                  border none
 
 # Layout tabbed for workspace 1, this may be annoying for others
 # but it's very useful for me
