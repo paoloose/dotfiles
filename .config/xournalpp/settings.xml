@@ -6,8 +6,8 @@
   <property name="pressureMultiplier" value="1.99000000"/>
   <property name="zoomGesturesEnabled" value="true"/>
   <property name="selectedToolbar" value="custom layout"/>
-  <property name="lastSavePath" value="/home/leflores/Notes"/>
-  <property name="lastOpenPath" value="/media/leflores/Win10/Users/famil/Desktop/Study/Ciclo-I"/>
+  <property name="lastSavePath" value="/home/paolo/Documents/notes"/>
+  <property name="lastOpenPath" value="/home/paolo/Documents/notes"/>
   <property name="lastImagePath" value=""/>
   <property name="edgePanSpeed" value="20.00000000"/>
   <property name="edgePanMaxMult" value="5.00000000"/>
@@ -112,7 +112,7 @@
   <property name="latexSettings.autoCheckDependencies" value="true"/>
   <property name="latexSettings.globalTemplatePath" value="/usr/share/xournalpp/resources/default_template.tex"/>
   <property name="latexSettings.genCmd" value="pdflatex -halt-on-error -interaction=nonstopmode '{}'"/>
-  <property name="font" font="System-ui Bold" size="10.00000000"/>
+  <property name="font" font="URW Gothic Semi-Bold" size="10.00000000"/>
   <data name="buttonConfig">
     <data name="default">
       <attribute name="color" type="hex" value="ff000000"/>
@@ -196,14 +196,14 @@
     </data>
   </data>
   <data name="lastUsedPageBgColor">
-    <attribute name="color00" type="hex" value="ff2a2727"/>
-    <attribute name="color01" type="hex" value="ffdee2ee"/>
-    <attribute name="color02" type="hex" value="fffafaf9"/>
-    <attribute name="color03" type="hex" value="ff131215"/>
-    <attribute name="color04" type="hex" value="ffeddef0"/>
-    <attribute name="color05" type="hex" value="ffe5d7e5"/>
-    <attribute name="color06" type="hex" value="ff000000"/>
-    <attribute name="color07" type="hex" value="ffffffff"/>
+    <attribute name="color00" type="hex" value="ffdadcda"/>
+    <attribute name="color01" type="hex" value="ff2a2727"/>
+    <attribute name="color02" type="hex" value="ffdee2ee"/>
+    <attribute name="color03" type="hex" value="fffafaf9"/>
+    <attribute name="color04" type="hex" value="ff131215"/>
+    <attribute name="color05" type="hex" value="ffeddef0"/>
+    <attribute name="color06" type="hex" value="ffe5d7e5"/>
+    <attribute name="color07" type="hex" value="ff000000"/>
     <attribute name="color08" type="hex" value="ffffffff"/>
     <attribute name="count" type="int" value="9"/>
   </data>
@@ -227,7 +227,7 @@
     <data name="eraser">
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="size" type="string" value="THIN"/>
-      <attribute name="type" type="string" value="deleteStroke"/>
+      <attribute name="type" type="string" value="default"/>
     </data>
     <data name="hand">
       <attribute name="drawingType" type="string" value="default"/>
@@ -237,13 +237,13 @@
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
-      <attribute name="size" type="string" value="BIG"/>
+      <attribute name="size" type="string" value="MEDIUM"/>
     </data>
     <data name="image">
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="pen">
-      <attribute name="color" type="hex" value="f03e3e"/>
+      <attribute name="color" type="hex" value="e94343"/>
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
@@ -266,7 +266,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="text">
-      <attribute name="color" type="hex" value="ffffff"/>
+      <attribute name="color" type="hex" value="212529"/>
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="verticalSpace">
