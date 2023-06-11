@@ -41,6 +41,11 @@ alias ls='lsd --group-dirs=first'
 alias cat='batcat'
 alias dotfiles="/usr/bin/git --work-tree=$HOME --git-dir=$HOME/.dotfiles"
 alias icat="kitty +kitten icat"
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
 
 # useful for capturing output of commands
 cap () { tee /tmp/capture.out; }
