@@ -95,7 +95,7 @@ class Position(PositionBase):
         scroll as little as possible to make both visible.
         Otherwise, scroll as much as possible towards other.
         """
-        #  @ 
+        #  @
         #  .|   .    @|   .    .
         # |.|  |.   |.|  |.   |.|
         # |*|  |*|  |*|  |*|  |*|
@@ -592,29 +592,42 @@ class GrabHandler(Handler):
             pred = (self._is_word_char if self._is_word_char(line[pos - 1])
                     else self._is_word_separator)
             new_pos = pos - len(''.join(takewhile(pred, reversed(line[:pos]))))
-            return Position(wcswidth(line[:new_pos]),
-                            self.point.y, self.point.top_line)
+            return Position(
+                wcswidth(line[:new_pos]),
+                self.point.y, self.point.top_line
+            )
         if self.point.y > 0:
-            return Position(wcswidth(unstyled(self.lines[self.point.line - 2])),
-                            self.point.y - 1, self.point.top_line)
+            return Position(
+                wcswidth(unstyled(self.lines[self.point.line - 2])),
+                self.point.y - 1, self.point.top_line
+            )
         if self.point.top_line > 1:
-            return Position(wcswidth(unstyled(self.lines[self.point.line - 2])),
-                            self.point.y, self.point.top_line - 1)
+            return Position(
+                wcswidth(unstyled(self.lines[self.point.line - 2])),
+                self.point.y, self.point.top_line - 1
+            )
         return self.point
 
     def word_right(self) -> Position:
         line = unstyled(self.lines[self.point.line - 1])
         pos = truncate_point_for_length(line, self.point.x)
         if pos < len(line):
-            pred = (self._is_word_char if self._is_word_char(line[pos])
-                    else self._is_word_separator)
+            pred = (
+                self._is_word_char if self._is_word_char(line[pos]) else self._is_word_separator
+            )
+            # print(f"chop: {''.join(takewhile(pred, line[pos:]))}")
             new_pos = pos + len(''.join(takewhile(pred, line[pos:])))
-            return Position(wcswidth(line[:new_pos]),
-                            self.point.y, self.point.top_line)
+            return Position(
+                wcswidth(line[:new_pos]), self.point.y, self.point.top_line
+            )
         if self.point.y < self.screen_size.rows - 1:
-            return Position(0, self.point.y + 1, self.point.top_line)
+            return Position(
+                0, self.point.y + 1, self.point.top_line
+            )
         if self.point.top_line + self.point.y < len(self.lines):
-            return Position(0, self.point.y, self.point.top_line + 1)
+            return Position(
+                0, self.point.y, self.point.top_line + 1
+            )
         return self.point
 
     def _select(self, direction: DirectionStr,
@@ -625,8 +638,9 @@ class GrabHandler(Handler):
         if self.point.top_line != old_point.top_line:
             self._redraw()
         else:
-            self._redraw_lines(self.mark_type.lines_affected(
-                self.mark, old_point, self.point))
+            self._redraw_lines(
+                self.mark_type.lines_affected(self.mark, old_point, self.point)
+            )
 
     def move(self, direction: DirectionStr) -> None:
         self._select(direction, self.mode_types[self.mode])
