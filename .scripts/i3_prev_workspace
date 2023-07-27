@@ -1,0 +1,2 @@
+#!/bin/bash
+i3-msg workspace prev > /dev/null 2>&1
