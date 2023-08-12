@@ -3,6 +3,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# use main_home to target only in your main user
+# use $HOME to target per-user home
+main_home="/home/paolo"
+
 # -- zsh options
 # https://zsh.sourceforge.io/Doc/Release/Options.html
 
@@ -26,54 +30,71 @@ HISTFILE=~/.zsh_history
 # -- colors for less
 export LESS='-R --use-color -Dd+r$Du+b'
 
-# -- Disable microsoft spyware for dotnet
+# -- disable microsoft spyware for dotnet
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
 
-# -- pyenv
-export PYENV_ROOT="$HOME/.pyenv"
+# -- fly.io cli
+export FLYCTL_INSTALL="$main_home/.fly"
+
+# -- some tools setup
+export GOPATH="$main_home/.local/go"
+export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+export DENO_INSTALL="$main_home/.deno"
+
+export GITIN_LINESIZE=15
+export GITIN_VIMKEYS=false
 
 # -- Manual aliases
-alias ll='lsd -lh --group-dirs=first'
-alias la='lsd -a --group-dirs=first'
-alias l='lsd --group-dirs=first'
-alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
-alias cat='batcat'
-alias dotfiles="/usr/bin/git --work-tree=$HOME --git-dir=$HOME/.dotfiles"
-alias icat="kitty +kitten icat"
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+alias ll='ls -lh'
+alias lla='ls -lha'
+alias la='ls -a'
+alias cat='batcat --theme=TwoDark'
+alias dots="/usr/bin/git --work-tree=$HOME --git-dir=$HOME/.dotfiles"
+alias gitin='gitin status'
 
+# reverse path alias 'cd ..'
+for i in {1..10}; do
+  dots_alias=$(printf '.%.0s' {0..$i})
+  cd_command="cd $(printf '../%.0s' {1..$i})"
+  alias $dots_alias=$cd_command
+done
 
-# useful for capturing output of commands
+if which kitty >/dev/null 2>&1; then
+	alias ssh="kitty +kitten ssh"
+	alias icat="kitty +kitten icat"
+fi
+
+# -- utilities
+
 cap () { tee /tmp/capture.out; }
 ret () { cat /tmp/capture.out; }
 
-# path
-export PATH=$HOME/.config/local/share/fnm:/usr/local/bin:/usr/local/go/bin:/snap/bin:$HOME/.local/bin:$PATH
+mkgo () { mkdir $1 && cd $1 }
 
-if [ $USER = "root" ]; then
-    export PATH=/home/paolo/.local/bin:/home/paolo/.dotnet:$HOME/.local/share/fnm:$PATH
-else
-    export PATH=$HOME/.scripts:/home/paolo/.dotnet:$HOME/.config/local/share/fnm:$PYENV_ROOT/bin:$PATH
-fi
+paths=(
+  /usr/local/bin
+  /usr/local/go/bin
+  /snap/bin
+  $HOME/.local/bin
+  $main_home/.config/local/share/fnm
+  $main_home/.config/local/share/coursier/bin
+  $main_home/.local/bin
+  $main_home/.dotnet
+  $main_home/.scripts
+  $FLYCTL_INSTALL/bin
+  $DENO_INSTALL/bin
+)
+
+for p in ${paths[@]}; do
+  PATH=:$PATH:
+  PATH=${PATH//:$p:/:}$p
+  PATH=${PATH#:}
+done
 
 # -- init environments
 eval "`fnm env`"
-eval "$(pyenv init - >/dev/null 2>&1)"
-
-# -- pnpm
-export PNPM_HOME=$HOME/.config/local/share/pnpm
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# -- deno
-export DENO_INSTALL="/home/paolo/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
+. "$HOME/.cargo/env"
 
 # -- load plugins
 
