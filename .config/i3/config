@@ -224,28 +224,33 @@ bindsym --release $mod+shift+Print exec --no-startup-id flameshot gui \
 bindsym $mod+z exec --no-startup-id boomer
 
 # Window capture
-for_window [class="Gnome-calculator"]  floating enable
-for_window [class="Google-chrome"]     border none
-for_window [class="pentablet"]         floating enable
-for_window [class="Xournalpp"]         border none
-for_window [class="vscodium"]          border none
-for_window [class="Leafpad"]           border pixel 1, floating enable
-for_window [class="Polybar"]           gaps inner 0, gaps outer 0
-for_window [class="Gthumb"]            border none
-for_window [class="kitty"]             border pixel 2
-for_window [class="Pqiv"]              floating enable # transparent image viewer
-for_window [class="Pqiv"]              border none
-for_window [class="Code"]              border none
-for_window [class="vlc"]               border none, floating enable
-for_window [class="sorthem"]           floating enable
-for_window [class="Trello Desktop"]    border none
-for_window [window_role="task_dialog"] floating enable;  border none
-for_window [window_role="Preferences"] floating enable;  border none
-for_window [window_role="pop-up"]      floating enable;  border none
-for_window [window_type="dialog"]      floating enable;  border none
-for_window [window_role="bubble"]      floating enable;  border none
-for_window [window_type="menu"]        floating enable;  border none
-for_window [floating]                  border none
+
+for_window [class="Gnome-calculator"]   floating enable
+for_window [class="Google-chrome"]      border none
+for_window [class="pentablet"]          floating enable
+for_window [class="xournalpp"]          border none
+for_window [class="vscodium"]           border none
+for_window [class="Leafpad"]            border pixel 1, floating enable
+for_window [class="Polybar"]            gaps inner 0, gaps outer 0
+for_window [class="Gthumb"]             border none, floating enable, resize set 854 480, move position center
+for_window [class="kitty"]              border pixel 2
+for_window [class="Pqiv"]               floating enable # transparent image viewer
+for_window [class="Pqiv"]               border none
+for_window [class="Code"]               border none
+for_window [class="vlc"]                border none, floating enable, resize set 1280 720, move position center
+for_window [class="sorthem"]            floating enable
+for_window [class="Trello Desktop"]     border none
+for_window [class="Zathura"]            border none
+for_window [class="org.gnome.Nautilus"] floating enable
+for_window [window_role="task_dialog"]  floating enable; border none
+for_window [window_role="Preferences"]  floating enable; border none
+for_window [window_role="pop-up"]       floating enable; border none
+for_window [window_type="dialog"]       floating enable; border none
+for_window [window_role="bubble"]       floating enable; border none
+for_window [window_type="menu"]         floating enable; border none
+for_window [title="calc"]               floating enable
+for_window [title="floating"]           floating enable
+for_window [floating]                   border none
 
 # Layout tabbed for workspace 1, this may be annoying for others
 # but it's very useful for me
@@ -373,7 +378,7 @@ exec --no-startup-id nm-applet
 exec_always --no-startup-id feh --bg-fill ~/.assets/wallpapers/wallhaven-x166ld.riced.png
 
 # set keyboard layout
-exec --no-startup-id setxkbmap -layout es -option grp:alt_shift_toggle
+exec --no-startup-id setxkbmap -layout latam -option grp:alt_shift_toggle
 # for english keyboard
 # exec setxkbmap -layout us,de -option grp:alt_shift_toggle
 
