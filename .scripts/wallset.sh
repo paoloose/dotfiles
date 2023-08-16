@@ -1,9 +1,11 @@
 #!/bin/bash
+set -e
+
 # This tool sets wallpapers from https://wallhaven.cc
 # Usage: wallset.sh <code> or wallset.sh <link>
 
 cache=$HOME/.assets/wallpapers
-valid_extensions="jpg png"
+valid_extensions="jpg png jpeg"
 
 if [ ! -d "$cache" ]; then
     mkdir -p "$cache"
@@ -11,6 +13,11 @@ fi
 
 user_input=$1
 using_link=false
+
+wget_flags=(
+    --quiet
+    --user-agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:35.0) Gecko/20100101 Firefox/35.0"
+)
 
 function index_of_substr() {
     # $1 = str, $2 = substr
@@ -20,10 +27,17 @@ function index_of_substr() {
     if [ $index = ${#found} ]; then echo -1; else echo $index; fi
 }
 
+export PID=$$
+trap "exit 1" SIGTERM SIGINT
+function exit_err() {
+    if [ -n "$1" ]; then echo $1 >&2; fi
+    kill -s TERM $PID
+}
+
 # if you use other tool than feh
 function set_wallpaper() {
     # $1 is a local img file
-    feh --bg-fill $1
+    feh --bg-max $1
 }
 
 # $1 is url, $2 is output file (if empty, the file name in the url will be used)
@@ -42,7 +56,12 @@ function download_img() {
     for ext in $valid_extensions; do
         case $url in
             *".$ext")
-                wget -q $url -O "$out" || { echo "error downloading $url: wget code: $?" ; exit 1; }
+                referer=$url
+                status=$(wget "${wget_flags[@]}" --referer=$referer --server-response $url -O "$out" 2>&1 | awk '/^  HTTP/{print $2}')
+                if [ "$status" != 200 ]; then
+                    rm "$out"
+                    exit_err "error from '$url': status: $status";
+                fi
                 is_valid=true
                 echo $out
                 return
@@ -51,8 +70,7 @@ function download_img() {
     done
 
     if [ is_valid = false ]; then
-        echo "invalid file format, expected the following: $valid_extensions" >&2
-        exit 1
+        exit_err "invalid file format, expected the following: $valid_extensions"
     fi
 }
 
@@ -63,6 +81,7 @@ function main() {
     case $user_input in
         "https://wallhaven.cc/w/"* | "http://wallhaven.cc/w/"*)
             # input is a fill link
+            echo "using wallheaven"
             imgcode=${user_input##*"wallhaven.cc/w/"} # get all after prefix */w/
         ;;
         "http"*)
@@ -71,6 +90,7 @@ function main() {
         ;;
         *)
             # using a code like 8ojvek
+            echo "using wallheaven"
             imgcode=$user_input
         ;;
     esac
@@ -78,8 +98,7 @@ function main() {
     # If reached here, user want to download a wallpaper from https://wallhaven.cc/
 
     if [ ${#imgcode} != 6 ]; then
-        echo "invalid wallhaven.cc image code: '$imgcode'!"
-        exit 69
+        exit_err "invalid wallhaven.cc image code: '$imgcode'!"
     fi
 
     base_url=https://w.wallhaven.cc/full/${imgcode:0:2}/
@@ -93,7 +112,7 @@ function main() {
             exit 0
         fi
         # check if image exists (without downloading it)
-        if wget --spider -q "$base_url/wallhaven-$imgcode.$ext"; then
+        if wget $wget_flags --spider "$base_url/wallhaven-$imgcode.$ext"; then
             extension_found=$ext
             echo "found extension: $extension_found"
             break
@@ -101,9 +120,7 @@ function main() {
     done
 
     if [ -z $extension_found ]; then
-        echo "could not found the image"
-        echo "you can specify it manually providing the full link"
-        exit 1
+        exit_err "could not found the image. try providing the full link"
     fi
 
     local url="$base_url/wallhaven-$imgcode.$extension_found"
