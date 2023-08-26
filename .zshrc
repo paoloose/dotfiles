@@ -79,22 +79,22 @@ paths=(
   $HOME/.local/bin
   $main_home/.config/local/share/fnm
   $main_home/.config/local/share/coursier/bin
-  $main_home/.local/bin
+  $HOME/.local/bin
   $main_home/.dotnet
   $main_home/.scripts
   $FLYCTL_INSTALL/bin
   $DENO_INSTALL/bin
 )
 
-for p in ${paths[@]}; do
+for p in ${(Oa)paths}; do
   PATH=:$PATH:
-  PATH=${PATH//:$p:/:}$p
-  PATH=${PATH#:}
+  PATH=$p${PATH//:$p:/:}
+  PATH=${PATH%:}
 done
 
 # -- init environments
 eval "`fnm env`"
-. "$HOME/.cargo/env"
+. "$main_home/.cargo/env"
 
 # -- load plugins
 
