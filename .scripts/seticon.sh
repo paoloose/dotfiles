@@ -283,8 +283,8 @@ function find_path_to_icons() {
 # https://specifications.freedesktop.org/menu-spec/menu-spec-latest.html#paths
 # https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html#variables
 function list_applications_in_system() {
-    local data_dirs=$(printenv | grep XDG_DATA_DIRS)
-    case $var in
+    local data_dirs=$(echo $XDG_DATA_DIRS)
+    case $data_dirs in
           ""|*"\n"*) data_dirs="/usr/local/share/:/usr/share/"
     esac
     local all_desktop_files=""
