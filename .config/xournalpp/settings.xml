@@ -6,8 +6,8 @@
   <property name="pressureMultiplier" value="1.99"/>
   <property name="zoomGesturesEnabled" value="true"/>
   <property name="selectedToolbar" value="custom layout"/>
-  <property name="lastSavePath" value="/home/paolo/Documents/notes/projects"/>
-  <property name="lastOpenPath" value="/home/paolo/Downloads"/>
+  <property name="lastSavePath" value="/home/paolo/Documents/notes/unmsm"/>
+  <property name="lastOpenPath" value="/home/paolo/Documents/notes/study"/>
   <property name="lastImagePath" value=""/>
   <property name="edgePanSpeed" value="20"/>
   <property name="edgePanMaxMult" value="5"/>
@@ -15,7 +15,7 @@
   <property name="zoomStepScroll" value="10"/>
   <property name="displayDpi" value="72"/>
   <property name="mainWndWidth" value="1920"/>
-  <property name="mainWndHeight" value="1056"/>
+  <property name="mainWndHeight" value="1036"/>
   <property name="maximized" value="true"/>
   <property name="showToolbar" value="true"/>
   <property name="showSidebar" value="false"/>
@@ -92,7 +92,7 @@
   <!--Config for new pages-->
   <property name="pageTemplate" value="xoj/template&#10;copyLastPageSize=false&#10;copyLastPageSettings=true&#10;size=595.275591x841.889764&#10;backgroundType=dotted&#10;backgroundColor=#ff2a2727&#10;"/>
   <property name="sizeUnit" value="cm"/>
-  <property name="audioFolder" value="file:///home/leflores/Notes"/>
+  <property name="audioFolder" value="/home/paolo/Documents/notes/.audioxopp"/>
   <property name="audioInputDevice" value="-1"/>
   <property name="audioOutputDevice" value="-1"/>
   <property name="audioSampleRate" value="44100"/>
@@ -125,7 +125,7 @@
   <property name="latexSettings.defaultText" value="x^2"/>
   <property name="latexSettings.globalTemplatePath" value="/usr/share/xournalpp/resources/default_template.tex"/>
   <property name="latexSettings.genCmd" value="pdflatex -halt-on-error -interaction=nonstopmode '{}'"/>
-  <property name="latexSettings.sourceViewThemeId" value=""/>
+  <property name="latexSettings.sourceViewThemeId" value="classic"/>
   <property name="latexSettings.editorFont" value="Monospace 12"/>
   <property name="latexSettings.useCustomEditorFont" value="false"/>
   <property name="latexSettings.editorWordWrap" value="true"/>
@@ -214,6 +214,10 @@
       <attribute name="deviceClass" type="int" value="2"/>
       <attribute name="deviceSource" type="int" value="1"/>
     </data>
+    <data name="keyd virtual pointer">
+      <attribute name="deviceClass" type="int" value="1"/>
+      <attribute name="deviceSource" type="int" value="0"/>
+    </data>
   </data>
   <data name="lastUsedPageBgColor">
     <attribute name="color00" type="hex" value="ffdadcda"/>
@@ -256,7 +260,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="highlighter">
-      <attribute name="color" type="hex" value="212529"/>
+      <attribute name="color" type="hex" value="efefef"/>
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
@@ -266,7 +270,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="pen">
-      <attribute name="color" type="hex" value="008000"/>
+      <attribute name="color" type="hex" value="86bc3c"/>
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
@@ -303,7 +307,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="text">
-      <attribute name="color" type="hex" value="f69340"/>
+      <attribute name="color" type="hex" value="ffe5a50a"/>
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="verticalSpace">
