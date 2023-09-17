@@ -39,7 +39,9 @@ export FLYCTL_INSTALL="$main_home/.fly"
 # -- some tools setup
 export GOPATH="$main_home/.local/go"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
+export PNPM_HOME="/home/paolo/.config/local/share/pnpm"
 export DENO_INSTALL="$main_home/.deno"
+export BUN_INSTALL="$main_home/.bun"
 
 export GITIN_LINESIZE=15
 export GITIN_VIMKEYS=false
@@ -52,6 +54,9 @@ alias la='ls -a'
 alias cat='batcat --theme=TwoDark'
 alias dots="/usr/bin/git --work-tree=$HOME --git-dir=$HOME/.dotfiles"
 alias gitin='gitin status'
+alias grep='grep --color=always'
+alias gc='git commit -v'
+alias gca='git commit -v --amend'
 
 # reverse path alias 'cd ..'
 for i in {1..10}; do
@@ -80,10 +85,12 @@ paths=(
   $main_home/.config/local/share/fnm
   $main_home/.config/local/share/coursier/bin
   $HOME/.local/bin
+  $PNPM_HOME
   $main_home/.dotnet
   $main_home/.scripts
   $FLYCTL_INSTALL/bin
   $DENO_INSTALL/bin
+  $BUN_INSTALL/bin
 )
 
 for p in ${(Oa)paths}; do
@@ -95,6 +102,7 @@ done
 # -- init environments
 eval "`fnm env`"
 . "$main_home/.cargo/env"
+[ -s "$main_home/.bun/_bun" ] && source "$main_home/.bun/_bun"
 
 # -- load plugins
 
