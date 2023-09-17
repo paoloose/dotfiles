@@ -139,7 +139,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking # using $mod+s for scratchpads
+bindsym $mod+k layout stacking # using $mod+s for scratchpads
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -326,7 +326,7 @@ bar {
         #active_workspace  active workspace button for multiple outputs
     }
     status_command i3status -c ~/.config/i3status/config
-    font pango:Noto Mono, JetBrainsMono Nerd Font 10
+    font pango:Noto Mono, JetBrainsMono Nerd Font 9.5
     workspace_min_width 35
     padding 1px 5px 1px 1px
     strip_workspace_numbers no
