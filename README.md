@@ -1,17 +1,26 @@
 # dotfiles
 
-![rice](./.assets/2023-04-11_rice.png)
+Most of the config I use on my personal desktop. I try to maintain
+my setup very minimal and comfortable to use.
 
-| programs      | using            |
-| ------------- | ---------------- |
-| wm            | i3               |
-| os            | debian 11        |
-| terminal      | kitty            |
-| shell         | zsh + p10k       |
-| compositor    | picom            |
-| launcher      | rofi             |
-| screen locker | betterlockscreen |
-| status bar    | i3status         |
+![rice](./.assets/2023-09-24_rice.png)
+
+See also my [laptop's](https://github.com/paoloose/dotfiles/tree/laptop) branch.
+
+![rice](https://raw.githubusercontent.com/paoloose/dotfiles/laptop/.assets/2023-21-09_rice.png)
+
+---
+
+| programs      | using             |
+| ------------- | ----------------- |
+| wm            | i3                |
+| os            | debian trixie/sid |
+| terminal      | kitty             |
+| shell         | zsh + p10k        |
+| compositor    | picom             |
+| launcher      | rofi              |
+| screen locker | betterlockscreen  |
+| status bar    | i3status          |
 
 ## Setup
 
@@ -44,7 +53,25 @@ Before starting the X server, install some dependencies:
 ```sh
 sudo apt install sakura rofi picom dunst alsa-utils pulseaudio feh xclip
 libnotify-bin gnome-keyring gparted fonts-font-awesome devscripts pqiv bc
-curl adwaita-qt flameshot wget mate-polkit-bin fonts-noto-color-emoji
+curl adwaita-qt flameshot wget mate-polkit-bin fonts-noto-color-emoji git
+```
+
+Symbolic links for root:
+
+```sh
+sudo ln -s -f ~/.zsh /root/.zsh
+sudo ln -s -f ~/.p10k.zsh /root/.p10k.zsh
+sudo ln -s -f ~/.config/powerlevel10k /root/.config/powerlevel10k
+sudo ln -s -f ~/.dotfiles/etc/keyd/default.conf /etc/keyd/default.conf
+```
+
+Install the GTK theme
+
+```sh
+mkdir ~/repos && cd ~/repos
+git clone --depth=1 https://github.com/vinceliuice/Colloid-gtk-theme
+./install.sh --color dark --theme grey --tweaks normal black
+cp -r ~/.themes/Colloid-Grey-Dark/gtk-4.0/* ~/.config/gtk-4.0/
 ```
 
 And choose a web browser.
