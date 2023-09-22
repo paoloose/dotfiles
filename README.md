@@ -2,7 +2,7 @@
 
 For Arch, I basically replicate my Debian setup functionality and tools.
 
-![rice](./.assets/2023-04-11_rice.png)
+![rice](./.assets/2023-21-09_rice.png)
 
 | programs      | using            |
 | ------------- | ---------------- |
