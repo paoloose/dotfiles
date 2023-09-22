@@ -1,11 +1,13 @@
 # dotfiles
 
+For Arch, I basically replicate my Debian setup functionality and tools.
+
 ![rice](./.assets/2023-04-11_rice.png)
 
 | programs      | using            |
 | ------------- | ---------------- |
 | wm            | i3               |
-| os            | debian 11        |
+| os            | Arch Linux       |
 | terminal      | kitty            |
 | shell         | zsh + p10k       |
 | compositor    | picom            |
@@ -15,50 +17,65 @@
 
 ## Setup
 
-For Debian based systems, on a fresh install, choose no desktop environment and standard system utilities.
+Read the [Arch installation guide](https://wiki.archlinux.org/title/installation_guide).
+
+On a fresh Arch Linux installation, setup a graphical user interface:
+
+See <https://wiki.archlinux.org/title/Xorg>
 
 ```sh
-[ ] Debian desktop environment
-[ ] ... GNOME
-[ ] ... Xfce
-...
-[ ] SSH server
-[*] standard system utilities
+sudo pacman -S xorg xorg-server xorg-xinit
 ```
 
-Install xorg and i3 (See [installing Xorg](https://wiki.debian.org/Xorg#Installing_Xorg))
+Install the i3 meta package. See the [wiki entry for i3](https://wiki.archlinux.org/title/i3).
 
 ```sh
-sudo apt install xorg i3 -y
+sudo pacman -S i3
 ```
 
-Now `x-session-manager` should be linked to `i3`, but just to be sure, run:
+Now install the dependencies (with paru as AUR helper)
 
 ```sh
-# See https://wiki.debian.org/Xsession#Configuration
-echo "exec i3" > ~/.xsession
+paru -S rofi kitty zsh lsd xclip picom-git feh polkit-gnome gnome-keyring \
+wireless_tools jq xdotool alsa-utils pulseaudio playerctl bat flameshot nemo \
+nemo-fileroller gthumb bat locate gitin
 ```
 
-Before starting the X server, install some dependencies:
+Symbolic links for root:
 
 ```sh
-sudo apt install sakura rofi picom dunst alsa-utils pulseaudio feh xclip
-libnotify-bin gnome-keyring gparted fonts-font-awesome devscripts pqiv bc
-curl adwaita-qt flameshot wget mate-polkit-bin fonts-noto-color-emoji
+sudo ln -s -f ~/.zsh /root/.zsh
+sudo ln -s -f ~/.p10k.zsh /root/.p10k.zsh
+sudo ln -s -f ~/.config/powerlevel10k /root/.config/powerlevel10k
+sudo ln -s -f ~/.dotfiles/etc/keyd/default.conf /etc/keyd/default.conf
+```
+
+Some fixes I needed to do:
+
+```sh
+# The Gnome keyring prompt was not showing up:
+echo "dbus-update-activation-environment --systemd DISPLAY" >> ~/.xinitrc
 ```
 
 And choose a web browser.
 
 ```sh
 # Firefox
-sudo apt install firefox-esr
+sudo pacman -S firefox
 # Chromium
-sudo apt install chromium
+sudo pacman -S chromium
 # Chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
--O /tmp/chrome.deb
-sudo apt install /tmp/chrome.deb
+sudo pacman -S google-chrome
 # etc
+```
+
+Install the GTK theme
+
+```sh
+mkdir ~/repos && cd ~/repos
+git clone --depth=1 https://github.com/vinceliuice/Colloid-gtk-theme
+**./install.sh --color dark --theme grey --tweaks normal black
+cp -r ~/.themes/Colloid-Grey-Dark/gtk-4.0/* ~/.config/gtk-4.0/**
 ```
 
 Then install the dotfiles (see the [setup script](https://github.com/paoloose/dotfiles/blob/main/.scripts/setup.sh))
@@ -68,18 +85,6 @@ curl -s https://raw.githubusercontent.com/paoloose/dotfiles/main/.scripts/setup.
 ```
 
 Start the X session with `startx` and you should be good to go.
-
-Setup the kitty terminal
-
-```sh
-# Not sure why but the binary in the installer was faster on startup time than
-# the distributed package for debian (can't confirm this)
-# see https://sw.kovidgoyal.net/kitty/binary/#binary-install
-# sudo apt install kitty
-
-# see https://github.com/kovidgoyal/kitty/issues/1613
-sudo apt install kitty-terminfo
-```
 
 Thinks you might want to configure:
 
@@ -107,7 +112,7 @@ Thinks you might want to configure:
 
 ## How to create your own dotfiles repo
 
-Small guide here. See [this](https://news.ycombinator.com/item?id=11070797) for more info.
+See [this](https://news.ycombinator.com/item?id=11070797) for more info.
 
 ```bash
 # In your home directory
