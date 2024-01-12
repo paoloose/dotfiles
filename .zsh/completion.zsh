@@ -32,7 +32,7 @@ bindkey -M menuselect '^xn'  accept-and-infer-next-history  # Next
 bindkey -M menuselect '^xu'  undo                           # Undo
 bindkey -M menuselect '^[[Z' reverse-menu-complete # shift+tab
 
-autoload -U compinit; compinit -u
+# autoload -U compinit; compinit -u
 _comp_options+=(globdots) # With hidden files
 
 # Only work with the Zsh function vman

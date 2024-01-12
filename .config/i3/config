@@ -14,7 +14,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 # -- gaps
-gaps inner 6px
+gaps inner 3px
 smart_gaps on
 
 # -------------------------------------
@@ -36,6 +36,10 @@ bindsym $mod+p exec --no-startup-id ~/.config/rofi/launcher.sh
 
 # emojis with rofi
 bindsym $mod+period exec --no-startup-id ~/.config/rofi/emojis.sh
+
+# rofi clipboard
+bindsym $mod+v exec --no-startup-id ~/.config/rofi/clipboard.sh
+exec --no-startup-id greenclip daemon
 
 # -------------------------------------
 # ------------ Workspaces -------------
@@ -67,6 +71,7 @@ bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
+bindsym $mod+o workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
@@ -131,9 +136,9 @@ bindsym $mod+Shift+Down  move down  50 px
 bindsym $mod+Shift+Up    move up    50 px
 bindsym $mod+Shift+Right move right 50 px
 
-# split in horizontal/vertical orientation
-bindsym $mod+h split h
-bindsym $mod+v split v
+# split in horizontal/vertical orientation (alt)
+bindsym Mod1+h split h
+bindsym Mod1+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -180,7 +185,7 @@ mode "window modifiers [s]ticky [b]order [i]con [g]aps" {
     bindsym s sticky            toggle, mode "default"
     bindsym b border            toggle, mode "default"
     bindsym i title_window_icon toggle, mode "default"
-    bindsym g gaps inner all    toggle 15, mode "default"
+    bindsym g gaps inner all    toggle 3, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -375,7 +380,8 @@ exec --no-startup-id nm-applet
 
 # choose your wallpaper here (!)
 # sudo apt install feh
-exec_always --no-startup-id feh --bg-fill ~/.assets/wallpapers/wallhaven-x166ld.riced.png
+#exec_always --no-startup-id feh --bg-fill /home/paolo/.assets/wallpapers/bg-deb.png
+exec_always --no-startup-id feh --bg-fill /home/paolo/.assets/wallpapers/current.webp
 
 # set keyboard layout
 exec --no-startup-id setxkbmap -layout latam -option grp:alt_shift_toggle

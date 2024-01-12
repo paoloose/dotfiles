@@ -45,6 +45,9 @@ export BUN_INSTALL="$main_home/.bun"
 
 export GITIN_LINESIZE=15
 export GITIN_VIMKEYS=false
+# gh: arpitbbhayani/py-prompts
+#export PYTHONSTARTUP=/home/paolo/.py-prompts/themes/simple-colors.py
+export WINEPREFIX=~/.wine32
 
 # -- Manual aliases
 alias ls='lsd --group-dirs=first'
@@ -57,6 +60,9 @@ alias gitin='gitin status'
 alias grep='grep --color=always'
 alias gc='git commit -v'
 alias gca='git commit -v --amend'
+alias Dev="cd $main_home/Dev"
+alias Downloads="cd $main_home/Downloads"
+alias zshrc="source $main_home/.zshrc"
 
 # reverse path alias 'cd ..'
 for i in {1..10}; do
@@ -75,11 +81,25 @@ fi
 cap () { tee /tmp/capture.out; }
 ret () { cat /tmp/capture.out; }
 
-mkgo () { mkdir $1 && cd $1 }
+gclone() {
+    git clone --depth=1 $1
+    cloned=$(find . -maxdepth 1 -printf "%T@ %p\n" | sort -nr | awk 'NR==1 { print $2 }')
+    cd $cloned
+}
+mkgo () { mkdir -p $1 && cd $1 }
+startaws () {
+    autoload bashcompinit && bashcompinit
+    autoload -Uz compinit && compinit
+    complete -C '/usr/local/bin/aws_completer' aws
+    export AWS_PROFILE="probaar-aws-iam"
+}
 
 paths=(
   /usr/local/bin
   /usr/local/go/bin
+  /opt/flutter/bin
+  /opt/android-studio/bin
+  $GOPATH/bin
   /snap/bin
   $HOME/.local/bin
   $main_home/.config/local/share/fnm
@@ -103,6 +123,11 @@ done
 eval "`fnm env`"
 . "$main_home/.cargo/env"
 [ -s "$main_home/.bun/_bun" ] && source "$main_home/.bun/_bun"
+export PYENV_ROOT="$main_home/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# Load pyenv-virtualenv automatically by adding the following to ~/.bashrc:
+# eval "$(pyenv virtualenv-init -)"
 
 # -- load plugins
 

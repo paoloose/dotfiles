@@ -6,8 +6,8 @@
   <property name="pressureMultiplier" value="1.99"/>
   <property name="zoomGesturesEnabled" value="true"/>
   <property name="selectedToolbar" value="custom layout"/>
-  <property name="lastSavePath" value="/home/paolo/Documents/notes/unmsm"/>
-  <property name="lastOpenPath" value="/home/paolo/Documents/notes/study"/>
+  <property name="lastSavePath" value="/home/paolo/Documents/notes/study"/>
+  <property name="lastOpenPath" value="/home/paolo/Documents/notes/projects"/>
   <property name="lastImagePath" value=""/>
   <property name="edgePanSpeed" value="20"/>
   <property name="edgePanMaxMult" value="5"/>
@@ -15,7 +15,7 @@
   <property name="zoomStepScroll" value="10"/>
   <property name="displayDpi" value="72"/>
   <property name="mainWndWidth" value="1920"/>
-  <property name="mainWndHeight" value="1036"/>
+  <property name="mainWndHeight" value="1037"/>
   <property name="maximized" value="true"/>
   <property name="showToolbar" value="true"/>
   <property name="showSidebar" value="false"/>
@@ -37,7 +37,7 @@
   <property name="emptyLastPageAppend" value="disabled"/>
   <property name="presentationMode" value="false"/>
   <!--Which GUI elements are shown in default view mode, separated by a colon (,)-->
-  <property name="defaultViewModeAttributes" value="showMenubar,showToolbar,showSidebar"/>
+  <property name="defaultViewModeAttributes" value="showMenubar,showToolbar"/>
   <!--Which GUI elements are shown in fullscreen view mode, separated by a colon (,)-->
   <property name="fullscreenViewModeAttributes" value="goFullscren,showToolbar,showSidebar"/>
   <!--Which GUI elements are shown in presentation view mode, separated by a colon (,)-->
@@ -56,6 +56,7 @@
   <property name="darkTheme" value="true"/>
   <property name="useStockIcons" value="false"/>
   <property name="disableScrollbarFadeout" value="false"/>
+  <property name="disableAudio" value="false"/>
   <!--Hides scroolbars in the main window, allowed values: "none", "horizontal", "vertical", "both"-->
   <property name="scrollbarHideType" value="none"/>
   <property name="autoloadMostRecent" value="false"/>
@@ -260,7 +261,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="highlighter">
-      <attribute name="color" type="hex" value="efefef"/>
+      <attribute name="color" type="hex" value="ddcfac"/>
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
@@ -270,11 +271,11 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="pen">
-      <attribute name="color" type="hex" value="86bc3c"/>
+      <attribute name="color" type="hex" value="ddcfac"/>
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
-      <attribute name="size" type="string" value="MEDIUM"/>
+      <attribute name="size" type="string" value="THIN"/>
       <attribute name="style" type="string" value="plain"/>
     </data>
     <data name="playObject">
@@ -307,7 +308,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="text">
-      <attribute name="color" type="hex" value="ffe5a50a"/>
+      <attribute name="color" type="hex" value="68949c"/>
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="verticalSpace">
