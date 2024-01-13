@@ -51,14 +51,23 @@ echo "exec i3" > ~/.xsession
 Before starting the X server, install some dependencies:
 
 ```sh
-sudo apt install sakura rofi picom dunst alsa-utils pulseaudio feh xclip
+sudo apt install rofi picom dunst alsa-utils pulseaudio feh xclip lsd bat
 libnotify-bin gnome-keyring gparted fonts-font-awesome devscripts pqiv bc
 curl adwaita-qt flameshot wget mate-polkit-bin fonts-noto-color-emoji git
+```
+
+Clone the dots!
+
+Install the dotfiles (see the [setup script](https://github.com/paoloose/dotfiles/blob/main/.scripts/setup.sh))
+
+```sh
+curl -s https://raw.githubusercontent.com/paoloose/dotfiles/main/.scripts/setup.sh | bash
 ```
 
 Symbolic links for root:
 
 ```sh
+mkdir -p /root/.zsh
 sudo ln -s -f ~/.zsh /root/.zsh
 sudo ln -s -f ~/.p10k.zsh /root/.p10k.zsh
 sudo ln -s -f ~/.config/powerlevel10k /root/.config/powerlevel10k
@@ -74,6 +83,21 @@ git clone --depth=1 https://github.com/vinceliuice/Colloid-gtk-theme
 cp -r ~/.themes/Colloid-Grey-Dark/gtk-4.0/* ~/.config/gtk-4.0/
 ```
 
+Other utilities:
+
+```
+curl https://getmic.ro | bash
+
+curl https://sh.rustup.rs | sh
+
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+mkdir ~/.config
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k
+
+```
+
 And choose a web browser.
 
 ```sh
@@ -86,12 +110,6 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 -O /tmp/chrome.deb
 sudo apt install /tmp/chrome.deb
 # etc
-```
-
-Then install the dotfiles (see the [setup script](https://github.com/paoloose/dotfiles/blob/main/.scripts/setup.sh))
-
-```sh
-curl -s https://raw.githubusercontent.com/paoloose/dotfiles/main/.scripts/setup.sh | bash
 ```
 
 Start the X session with `startx` and you should be good to go.
@@ -134,7 +152,7 @@ Thinks you might want to configure:
 
 ## How to create your own dotfiles repo
 
-Small guide here. See [this](https://news.ycombinator.com/item?id=11070797) for more info.
+The following is a rough guide. See [this](https://news.ycombinator.com/item?id=11070797) for more info.
 
 ```bash
 # In your home directory
