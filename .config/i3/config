@@ -52,16 +52,22 @@ bindsym $mod+b workspace back_and_forth
 # We use variables to avoid repeating the names in multiple places.
 # sudo apt install fonts-font-awesome
 # see https://fontawesome.com/v4/cheatsheet
-set $ws1  "1:  "
-set $ws2  "2:  "
-set $ws3  "3:  "
-set $ws4  "  4  "
-set $ws5  "  5  "
-set $ws6  "  6  "
-set $ws7  "7: 🐢"
-set $ws8  "8:  "
-set $ws9  "9:  "
-set $ws10 "etc"
+set $ws1  "1:1:  "
+set $ws2  "2:2:  "
+set $ws3  "3:3:  "
+set $ws4  "4:4"
+set $ws5  "5:5"
+set $ws6  "6:6"
+set $ws7  "7:7: 🐢"
+set $ws8  "8:8:  "
+set $ws9  "9:9:  "
+set $ws10 "10:etc"
+set $ws11 "11:uwu"
+set $ws12 "12:nwn"
+set $ws13 "13:unu"
+set $ws14 "14:&gt;w&lt;"
+set $ws15 "15:uvu"
+set $ws16 "16:-w-"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -74,6 +80,12 @@ bindsym $mod+8 workspace $ws8
 bindsym $mod+o workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+Delete workspace $ws11
+bindsym $mod+End    workspace $ws12
+bindsym $mod+Next   workspace $ws13
+bindsym $mod+Insert workspace $ws14
+bindsym $mod+Home   workspace $ws15
+bindsym $mod+Prior  workspace $ws16
 
 workspace $ws1 gaps inner 0
 
@@ -89,16 +101,64 @@ bindsym $mod+Shift+8 move container to workspace $ws8;
 bindsym $mod+Shift+9 move container to workspace $ws9;
 bindsym $mod+Shift+0 move container to workspace $ws10;
 
+bindsym $mod+Shift+Delete move container to workspace $ws11
+bindsym $mod+Shift+End    move container to workspace $ws12
+bindsym $mod+Shift+Next   move container to workspace $ws13
+bindsym $mod+Shift+Insert move container to workspace $ws14
+bindsym $mod+Shift+Home   move container to workspace $ws15
+bindsym $mod+Shift+Prior  move container to workspace $ws16
+
 # Navigate between workspaces (love this one)
 bindsym $mod+Control+Left  workspace prev
 bindsym $mod+Control+Right workspace next
+
+# -------------------------------------
+# ------- Dual monitor support --------
+# -------------------------------------
+
+# Edit the following with the output you get from `xrand --current`
+# You may want to set a primary screen with `xrand --output <s> --primary`
+
+# primary
+set $m1 "HDMI-0"
+# secondary
+set $m2 "DVI-D-0"
+
+workspace $ws1 output $m1
+workspace $ws2 output $m1
+workspace $ws3 output $m1
+workspace $ws4 output $m1
+workspace $ws5 output $m1
+workspace $ws6 output $m1
+workspace $ws7 output $m1
+workspace $ws8 output $m1
+workspace $ws9 output $m1
+workspace $ws10 output $m1
+
+workspace $ws11 output $m2
+workspace $ws12 output $m2
+workspace $ws13 output $m2
+workspace $ws14 output $m2
+workspace $ws15 output $m2
+workspace $ws16 output $m2
+
+# See https://i3wm.org/docs/userguide.html#_mouse_warping
+mouse_warping none
+
+bindsym Menu exec --no-startup-id killall -USR1 xpointerbarrier
+
+exec --no-startup-id xpointerbarrier 0 3 3 0
+
+# -------------------------------------
+# ----------- i3 bindings -------------
+# -------------------------------------
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r exec "i3-msg restart reload"
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You ressed the exit i3 shortcut. You are about to fuck up your current X session.' -B 'Indeed, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit i3 shortcut. You are about to fuck up your current X session.' -B 'Indeed, exit i3' 'i3-msg exit'"
 
 # Tip: to see class name of a window, run `xprop` and click on the window.
 # class name is in WM_CLASS(STRING) property (the second string)
@@ -144,7 +204,7 @@ bindsym Mod1+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+k layout stacking # using $mod+s for scratchpads
+bindsym $mod+k layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -257,14 +317,14 @@ for_window [title="calc"]               floating enable
 for_window [title="floating"]           floating enable
 for_window [floating]                   border none
 
-# Layout tabbed for workspace 1, this may be annoying for others
-# but it's very useful for me
-for_window [workspace="1"]               layout tabbed
-for_window [workspace="1" class="kitty"] floating enable
+# Layout tabbed for first workspace of each monitor
+for_window [workspace=$ws1]  layout tabbed
+for_window [workspace=$ws11] layout tabbed
+for_window [workspace=$ws1 class="kitty"]  floating enable
+for_window [workspace=$ws11 class="kitty"] floating enable
 
-# For applications that I often use with scratchpad features
+# --- For applications that I often use with scratchpad features
 # See Window management > scratchpad
-bindsym $mod+n [class="Leafpad"] scratchpad show
 bindsym $mod+t [class="kitty"]   scratchpad show
 
 bindsym $mod+Shift+m mode "pets: [t]ux [w]aifu [n]eko [g]ato [u]bunchu"
@@ -334,9 +394,10 @@ bar {
     font pango:Noto Mono, JetBrainsMono Nerd Font 9.5
     workspace_min_width 35
     padding 1px 5px 1px 1px
-    strip_workspace_numbers no
+    strip_workspace_numbers yes
     workspace_buttons yes
     position bottom
+    tray_output primary
     # Avoid switching workspaces when scrolling
     bindsym button4 nop
     bindsym button5 nop
@@ -385,19 +446,18 @@ exec_always --no-startup-id feh --bg-fill /home/paolo/.assets/wallpapers/current
 
 # set keyboard layout
 exec --no-startup-id setxkbmap -layout latam -option grp:alt_shift_toggle
-# for english keyboard
-# exec setxkbmap -layout us,de -option grp:alt_shift_toggle
 
-# exec --no-startup-id compton --config ~/.config/.compton.conf
 exec --no-startup-id picom --config ~/.config/picom/picom.conf
 
-# exec --no-startup-id
 exec --no-startup-id "notify-send \
     --urgency=low \
     --expire-time=10000 \
     --icon=~/.config/i3/pets/neko.png \
     'Welcome!!!' \
     'Las distracciones son efímeras, pero el código abierto es para siempre.'"
+
+exec --no-startup-id xrandr --output HDMI-0 --primary --left-of DVI-D-0
+exec --no-startup-id xrandr --output DVI-D-0 --mode 1920x1080
 
 # Note:
 # 'exec' is executed on startup
