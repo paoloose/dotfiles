@@ -52,7 +52,7 @@ Before starting the X server, install some dependencies:
 
 ```sh
 sudo apt install rofi picom dunst alsa-utils pulseaudio feh xclip lsd bat
-libnotify-bin gnome-keyring gparted fonts-font-awesome devscripts pqiv bc
+libnotify-bin gnome-keyring gparted fonts-font-awesome unzip pqiv bc
 curl adwaita-qt flameshot wget mate-polkit-bin fonts-noto-color-emoji git
 ```
 
@@ -67,8 +67,9 @@ curl -s https://raw.githubusercontent.com/paoloose/dotfiles/main/.scripts/setup.
 Symbolic links for root:
 
 ```sh
-mkdir -p /root/.zsh
+sudo mkdir -p /root/.zsh /root/.config
 sudo ln -s -f ~/.zsh /root/.zsh
+sudo ln -s -f ~/.zshrc /root/.zshrc
 sudo ln -s -f ~/.p10k.zsh /root/.p10k.zsh
 sudo ln -s -f ~/.config/powerlevel10k /root/.config/powerlevel10k
 sudo ln -s -f ~/.dotfiles/etc/keyd/default.conf /etc/keyd/default.conf
@@ -79,6 +80,7 @@ Install the GTK theme
 ```sh
 mkdir ~/repos && cd ~/repos
 git clone --depth=1 https://github.com/vinceliuice/Colloid-gtk-theme
+cd Colloid-gtk-theme
 ./install.sh --color dark --theme grey --tweaks normal black
 cp -r ~/.themes/Colloid-Grey-Dark/gtk-4.0/* ~/.config/gtk-4.0/
 ```
@@ -87,6 +89,7 @@ Other utilities:
 
 ```
 curl https://getmic.ro | bash
+mv ./micro ~/.local/bin
 
 curl https://sh.rustup.rs | sh
 
@@ -96,6 +99,27 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 mkdir ~/.config
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.config/powerlevel10k
 
+curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+
+curl https://pyenv.run | bash
+
+sudo apt install -y nautilus
+
+sudo apt install gcc g++ make
+
+cd ~/repos && git clone https://github.com/rvaiya/keyd && cd keyd
+make && sudo make install
+sudo mv ~/.etc/keyd/default.conf /etc/keyd
+sudo systemctl enable keyd && sudo systemctl start keyd
+sudo keyd reload
+
+# https://github.com/Soft/xcolor
+cargo install xcolor
+
+# https://github.com/tsoding/boomer
+sudo apt-get install nim libgl1-mesa-dev libx11-dev libxext-dev libxrandr-dev
+cd ~/repos && git clone https://github.com/tsoding/boomer && nimble build
+mv ./bommer ~/.local/bin
 ```
 
 And choose a web browser.
