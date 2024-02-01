@@ -11,6 +11,7 @@ main_home="/home/paolo"
 # https://zsh.sourceforge.io/Doc/Release/Options.html
 
 setopt autocd # no need to write `cd` to change a directory
+autoload -Uz compinit && compinit
 
 # -- nice word jumping and deleting
 
@@ -28,7 +29,7 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # -- colors for less
-export LESS='-R --use-color -Dd+r$Du+b'
+export LESS='-S -R --use-color -Dd+r$Du+b'
 
 # -- disable microsoft spyware for dotnet
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
@@ -99,6 +100,7 @@ paths=(
   /usr/local/go/bin
   /opt/flutter/bin
   /opt/android-studio/bin
+  /opt/Android/Sdk/cmdline-tools/latest/bin
   $GOPATH/bin
   /snap/bin
   $HOME/.local/bin
@@ -123,9 +125,9 @@ done
 eval "`fnm env`"
 . "$main_home/.cargo/env"
 [ -s "$main_home/.bun/_bun" ] && source "$main_home/.bun/_bun"
-export PYENV_ROOT="$main_home/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#export PYENV_ROOT="$main_home/.pyenv"
+#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+#eval "$(pyenv init -)"
 # Load pyenv-virtualenv automatically by adding the following to ~/.bashrc:
 # eval "$(pyenv virtualenv-init -)"
 
