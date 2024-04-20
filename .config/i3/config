@@ -292,6 +292,8 @@ bindsym $mod+z exec --no-startup-id boomer
 
 for_window [class="Gnome-calculator"]   floating enable
 for_window [class="Google-chrome"]      border none
+for_window [class="Brave-browser"]      border none
+for_window [class="thorium-browser"]    border none
 for_window [class="pentablet"]          floating enable
 for_window [class="xournalpp"]          border none
 for_window [class="vscodium"]           border none
