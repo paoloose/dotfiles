@@ -16,7 +16,7 @@ general {
     separator = "="
 }
 
-#order += "battery all"
+order += "battery all"
 order += "wireless _first_"
 
 order += "ethernet _first_"
@@ -26,19 +26,24 @@ order += "memory"
 order += "volume master"
 order += "tztime local"
 
-#wireless _first_ {
-#   format_up = "W: (%quality at %essid) %ip"
-#   format_down = "W: down"
-#}
+wireless _first_ {
+    format_up = "🐢 %ip%quality@%essid"
+    format_down = "no wifi"
+}
 
 ethernet _first_ {
     format_up = "🐢 %ip"
-    format_down = "🌚 no ethernet"
+    format_down = ""
 }
 
-#battery all {
-#   format = "%status %percentage %remaining"
-#}
+battery all {
+   format = "%status %percentage"
+   status_chr = "&gt;w&lt;"
+   status_bat = ""
+   status_unk = "?"
+   status_full = "FULL 😋"
+   low_threshold = 20
+}
 
 disk "/" {
     # format = "%avail"
