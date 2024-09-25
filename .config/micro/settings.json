@@ -1,4 +1,6 @@
 {
     "colorscheme": "simple",
-    "tabstospaces": true
+    "softwrap": true,
+    "tabstospaces": true,
+    "wordwrap": true
 }
