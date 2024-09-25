@@ -170,7 +170,9 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit i3 shor
 default_border normal 1
 default_floating_border normal 2
 for_window [all] title_format "<small>%title | %class</small>"
+#for_window [all] title_format "%title | %class"
 title_align center
+focus_follows_mouse yes
 #hide_edge_borders smart
 #smart_borders on
 
@@ -294,7 +296,7 @@ for_window [class="Gnome-calculator"]   floating enable
 for_window [class="Google-chrome"]      border none
 for_window [class="Brave-browser"]      border none
 for_window [class="thorium-browser"]    border none
-for_window [class="pentablet"]          floating enable
+for_window [class="PenTablet"]          floating enable
 for_window [class="xournalpp"]          border none
 for_window [class="vscodium"]           border none
 for_window [class="Leafpad"]            border pixel 1, floating enable
@@ -308,16 +310,17 @@ for_window [class="vlc"]                border none, floating enable, resize set
 for_window [class="sorthem"]            floating enable
 for_window [class="Trello Desktop"]     border none
 for_window [class="Zathura"]            border none
-for_window [class="org.gnome.Nautilus"] floating enable
-for_window [window_role="task_dialog"]  floating enable; border none
-for_window [window_role="Preferences"]  floating enable; border none
-for_window [window_role="pop-up"]       floating enable; border none
-for_window [window_type="dialog"]       floating enable; border none
-for_window [window_role="bubble"]       floating enable; border none
-for_window [window_type="menu"]         floating enable; border none
-for_window [title="calc"]               floating enable
-for_window [title="floating"]           floating enable
+for_window [class="org.gnome.Nautilus"] floating enable, border none
+for_window [window_role="task_dialog"]  floating enable, border none
+for_window [window_role="Preferences"]  floating enable, border none
+for_window [window_role="pop-up"]       floating enable, border none
+for_window [window_type="dialog"]       floating enable, border none
+for_window [window_role="bubble"]       floating enable, border none
+for_window [window_type="menu"]         floating enable, border none
+for_window [title="calc"]               floating enable, border none
+for_window [title="__floating__"]       floating enable, border none
 for_window [floating]                   border none
+for_window [title="__portrait__"]       floating enable, border pixel 1
 
 # Layout tabbed for first workspace of each monitor
 for_window [workspace=$ws1]  layout tabbed
@@ -458,7 +461,7 @@ exec --no-startup-id "notify-send \
     'Welcome!!!' \
     'Las distracciones son efímeras, pero el código abierto es para siempre.'"
 
-exec --no-startup-id xrandr --output HDMI-0 --primary --left-of DVI-D-0
+exec --no-startup-id xrandr --output HDMI-0 --primary --left-of DVI-D-0 --rate 100
 exec --no-startup-id xrandr --output DVI-D-0 --mode 1920x1080
 
 # Note:
