@@ -24,8 +24,8 @@ bindkey "^H" backward-delete-word # ctrl + backspace
 bindkey '^[[3;5~' delete-word # ctrl + delete
 
 # -- Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
 # -- colors for less
@@ -40,7 +40,7 @@ export FLYCTL_INSTALL="$main_home/.fly"
 # -- some tools setup
 export GOPATH="$main_home/.local/go"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
-export PNPM_HOME="/home/paolo/.config/local/share/pnpm"
+export PNPM_HOME="$main_home/.config/local/share/pnpm"
 export DENO_INSTALL="$main_home/.deno"
 export BUN_INSTALL="$main_home/.bun"
 
@@ -61,9 +61,8 @@ alias gitin='gitin status'
 alias grep='grep --color=always'
 alias gc='git commit -v'
 alias gca='git commit -v --amend'
-alias Dev="cd $main_home/Dev"
-alias Downloads="cd $main_home/Downloads"
 alias zshrc="source $main_home/.zshrc"
+alias docker='export UID GID; docker'
 
 # reverse path alias 'cd ..'
 for i in {1..10}; do
@@ -113,6 +112,7 @@ paths=(
   $FLYCTL_INSTALL/bin
   $DENO_INSTALL/bin
   $BUN_INSTALL/bin
+  /opt/datagrip/bin/
 )
 
 for p in ${(Oa)paths}; do
@@ -125,9 +125,10 @@ done
 eval "`fnm env`"
 . "$main_home/.cargo/env"
 [ -s "$main_home/.bun/_bun" ] && source "$main_home/.bun/_bun"
-#export PYENV_ROOT="$main_home/.pyenv"
-#command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
+
+export PYENV_ROOT="$main_home/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
 # Load pyenv-virtualenv automatically by adding the following to ~/.bashrc:
 # eval "$(pyenv virtualenv-init -)"
 
@@ -144,3 +145,6 @@ eval "`fnm env`"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 . ~/.p10k.zsh
 . ~/.config/powerlevel10k/powerlevel10k.zsh-theme
+
+# bun completions
+[ -s "/home/paolo/.bun/_bun" ] && source "/home/paolo/.bun/_bun"
