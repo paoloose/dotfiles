@@ -52,7 +52,7 @@ Before starting the X server, install some dependencies:
 
 ```sh
 sudo apt install rofi picom dunst alsa-utils pulseaudio feh xclip lsd bat
-libnotify-bin gnome-keyring gparted fonts-font-awesome unzip pqiv bc
+libnotify-bin gnome-keyring gparted fonts-font-awesome unzip pqiv bc zsh
 curl adwaita-qt flameshot wget mate-polkit-bin fonts-noto-color-emoji git
 ```
 
