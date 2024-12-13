@@ -6,16 +6,16 @@
   <property name="pressureMultiplier" value="1.99"/>
   <property name="zoomGesturesEnabled" value="true"/>
   <property name="selectedToolbar" value="custom layout"/>
-  <property name="lastSavePath" value="/home/paolo/Documents/notes/study"/>
-  <property name="lastOpenPath" value="/home/paolo/Documents/notes/projects"/>
+  <property name="lastSavePath" value="/home/paolo/Documents/books/xournal_notes"/>
+  <property name="lastOpenPath" value="/tmp"/>
   <property name="lastImagePath" value=""/>
   <property name="edgePanSpeed" value="20"/>
   <property name="edgePanMaxMult" value="5"/>
   <property name="zoomStep" value="10"/>
   <property name="zoomStepScroll" value="10"/>
   <property name="displayDpi" value="72"/>
-  <property name="mainWndWidth" value="1920"/>
-  <property name="mainWndHeight" value="1037"/>
+  <property name="mainWndWidth" value="1567"/>
+  <property name="mainWndHeight" value="901"/>
   <property name="maximized" value="true"/>
   <property name="showToolbar" value="true"/>
   <property name="showSidebar" value="false"/>
@@ -48,12 +48,13 @@
   <property name="eraserVisibility" value="always"/>
   <!--The icon theme, allowed values are "iconsColor", "iconsLucide"-->
   <property name="iconTheme" value="iconsColor"/>
+  <!--Dark/light mode, allowed values are "useSystem", "forceLight", "forceDark"-->
+  <property name="themeVariant" value="useSystem"/>
   <property name="highlightPosition" value="false"/>
   <property name="cursorHighlightColor" value="2164260608"/>
   <property name="cursorHighlightBorderColor" value="2147483903"/>
   <property name="cursorHighlightRadius" value="30"/>
   <property name="cursorHighlightBorderWidth" value="0"/>
-  <property name="darkTheme" value="true"/>
   <property name="useStockIcons" value="false"/>
   <property name="disableScrollbarFadeout" value="false"/>
   <property name="disableAudio" value="false"/>
@@ -91,7 +92,7 @@
   <property name="preloadPagesAfter" value="5"/>
   <property name="eagerPageCleanup" value="true"/>
   <!--Config for new pages-->
-  <property name="pageTemplate" value="xoj/template&#10;copyLastPageSize=false&#10;copyLastPageSettings=true&#10;size=595.275591x841.889764&#10;backgroundType=dotted&#10;backgroundColor=#ff2a2727&#10;"/>
+  <property name="pageTemplate" value="xoj/template&#10;copyLastPageSize=false&#10;copyLastPageSettings=true&#10;size=595.275591x841.889764&#10;backgroundType=dotted&#10;backgroundColor=#131215&#10;"/>
   <property name="sizeUnit" value="cm"/>
   <property name="audioFolder" value="/home/paolo/Documents/notes/.audioxopp"/>
   <property name="audioInputDevice" value="-1"/>
@@ -109,7 +110,7 @@
   <property name="trySelectOnStrokeFiltered" value="false"/>
   <property name="snapRecognizedShapesEnabled" value="false"/>
   <property name="restoreLineWidthEnabled" value="false"/>
-  <property name="numIgnoredStylusEvents" value="0"/>
+  <property name="numIgnoredStylusEvents" value="2"/>
   <property name="inputSystemTPCButton" value="false"/>
   <property name="inputSystemDrawOutsideWindow" value="true"/>
   <property name="preferredLocale" value=""/>
@@ -133,7 +134,7 @@
   <property name="latexSettings.sourceViewAutoIndent" value="true"/>
   <property name="latexSettings.sourceViewSyntaxHighlight" value="true"/>
   <property name="latexSettings.sourceViewShowLineNumbers" value="false"/>
-  <property name="font" font="DejaVu Sans" size="10"/>
+  <property name="font" font="DejaVu Sans" size="7"/>
   <data name="buttonConfig">
     <data name="default">
       <attribute name="color" type="hex" value="ff000000"/>
@@ -221,15 +222,15 @@
     </data>
   </data>
   <data name="lastUsedPageBgColor">
-    <attribute name="color00" type="hex" value="ffdadcda"/>
-    <attribute name="color01" type="hex" value="ff2a2727"/>
-    <attribute name="color02" type="hex" value="ffdee2ee"/>
-    <attribute name="color03" type="hex" value="fffafaf9"/>
-    <attribute name="color04" type="hex" value="ff131215"/>
-    <attribute name="color05" type="hex" value="ffeddef0"/>
-    <attribute name="color06" type="hex" value="ffe5d7e5"/>
-    <attribute name="color07" type="hex" value="ff000000"/>
-    <attribute name="color08" type="hex" value="ffffffff"/>
+    <attribute name="color00" type="hex" value="ff040404"/>
+    <attribute name="color01" type="hex" value="ffffffff"/>
+    <attribute name="color02" type="hex" value="ff1b1b1b"/>
+    <attribute name="color03" type="hex" value="ffdadcda"/>
+    <attribute name="color04" type="hex" value="ff2a2727"/>
+    <attribute name="color05" type="hex" value="ffdee2ee"/>
+    <attribute name="color06" type="hex" value="fffafaf9"/>
+    <attribute name="color07" type="hex" value="ff131215"/>
+    <attribute name="color08" type="hex" value="ffeddef0"/>
     <attribute name="count" type="int" value="9"/>
   </data>
   <data name="tools">
@@ -255,7 +256,7 @@
     <data name="eraser">
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="size" type="string" value="THIN"/>
-      <attribute name="type" type="string" value="default"/>
+      <attribute name="type" type="string" value="deleteStroke"/>
     </data>
     <data name="hand">
       <attribute name="drawingType" type="string" value="default"/>
@@ -275,7 +276,7 @@
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
-      <attribute name="size" type="string" value="THIN"/>
+      <attribute name="size" type="string" value="MEDIUM"/>
       <attribute name="style" type="string" value="plain"/>
     </data>
     <data name="playObject">
@@ -308,7 +309,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="text">
-      <attribute name="color" type="hex" value="68949c"/>
+      <attribute name="color" type="hex" value="c0cca8"/>
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="verticalSpace">

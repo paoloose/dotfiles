@@ -199,14 +199,14 @@ bindsym $mod+Shift+Up    move up    50 px
 bindsym $mod+Shift+Right move right 50 px
 
 # split in horizontal/vertical orientation (alt)
-bindsym Mod1+h split h
-bindsym Mod1+v split v
+#bindsym Mod1+h split h
+#bindsym Mod1+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+k layout stacking
+bindsym $mod+i layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -395,6 +395,8 @@ bar {
 
         #active_workspace  active workspace button for multiple outputs
     }
+    tray_output $m2
+    tray_output $m1
     status_command i3status -c ~/.config/i3status/config
     font pango:Noto Mono, JetBrainsMono Nerd Font 9.5
     workspace_min_width 35
@@ -402,7 +404,6 @@ bar {
     strip_workspace_numbers yes
     workspace_buttons yes
     position bottom
-    tray_output primary
     # Avoid switching workspaces when scrolling
     bindsym button4 nop
     bindsym button5 nop
@@ -446,8 +447,7 @@ exec --no-startup-id nm-applet
 
 # choose your wallpaper here (!)
 # sudo apt install feh
-#exec_always --no-startup-id feh --bg-fill /home/paolo/.assets/wallpapers/bg-deb.png
-exec_always --no-startup-id feh --bg-fill /home/paolo/.assets/wallpapers/current.webp
+exec_always --no-startup-id feh --bg-fill /home/paolo/.assets/wallpapers/wallpaper.png
 
 # set keyboard layout
 exec --no-startup-id setxkbmap -layout latam -option grp:alt_shift_toggle

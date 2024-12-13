@@ -63,6 +63,7 @@ alias gc='git commit -v'
 alias gca='git commit -v --amend'
 alias zshrc="source $main_home/.zshrc"
 alias docker='export UID GID; docker'
+alias hexyl='hexyl --border=none'
 
 # reverse path alias 'cd ..'
 for i in {1..10}; do
