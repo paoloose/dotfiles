@@ -35,10 +35,9 @@ main() {
     local path_to_icons # Path to the icons directory (usually /usr/share/icons)
                         # Is resolved to ../icons/hicolor
 
-    local app_command           # (set or unset)
-    local show_preview=true     # Show preview of the icon (only in 'set' mode)
-    local overwrite_icons=false # Overwrite icons when (only in 'set' mode)
-
+    local app_command               # (set or unset)
+    local show_preview=true         # Show preview of the icon (only in 'set' mode)
+    local overwrite_icons=false     # Overwrite icons when (only in 'set' mode)
     local image_was_converted=false # If the image was converted to .png
 
     # Get the input from the user and validate it
@@ -66,17 +65,19 @@ main() {
         prev_icon_name="$(cat "$desktop_file" | grep Icon)" # icon line
         prev_icon_name="${prev_icon_name##*=}" # Icon= value
 
-        # Remove all the Icon definition from the .desktop file
-        sed -i '/^Icon=/d' "$desktop_file" # remove Icon line
-
+        sed_error=$(sed -i '/^Icon=/d' "$desktop_file" 2>&1) # remove Icon line
+        if [ -n "$sed_error" ]; then
+            exit_error "Unable to edit desktop file $desktop_file\n$sed_error"
+        fi
         if [ "$prev_icon_name" ]; then
             icon_name="$prev_icon_name"
         else
+            # Remove all the Icon definition from the .desktop file
             icon_name="$(basename "$desktop_file")"
             icon_name="${icon_name%.*}" # remove extension
+            # Redefine the icon name in the .desktop file
+            echo "Icon=$icon_name" >> $desktop_file
         fi
-        # Redefine the icon name in the .desktop file
-        echo "Icon=$icon_name" >> $desktop_file
     fi
 
     # All variables are set, now we can proceed with the set/unset
@@ -316,14 +317,12 @@ Commands:
   unset  Remove an icon for an application or an icons directory
   list   List all the .desktop files in the system and exit.
          Use it with 'grep' to find a specific application.
-         Don't use it with 'sudo' or as root.
 
 Options:
   -n, --no-preview  Don't show a preview of the icon when setting it
   -o, --overwrite   Overwrite the icon if it already exists
   -h, --help        Show this help message and exit
 
-Run with sudo when needed.
 If icon is not a .png file, it will be converted on the fly.
 Refer to https://wiki.archlinux.org/title/desktop_entries
 for more information about .desktop files.
@@ -331,15 +330,15 @@ for more information about .desktop files.
 }
 
 function exit_error() {
-    echo "$bin_name: error: $@"
+    printf "$bin_name: error: $@\n"
     exit -1
 }
 function exit_invalid() {
-    echo "$bin_name: $@"
+    printf "$bin_name: $@\n"
     exit -1
 }
 function exit_bad_usage() {
-    echo "$bin_name: bad usage: $@"
+    printf "$bin_name: bad usage: $@\n"
     usage
     exit -1
 }
