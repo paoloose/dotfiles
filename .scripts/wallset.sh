@@ -88,6 +88,10 @@ function main() {
             set_wallpaper $(download_img $user_input)
             exit 0
         ;;
+        *"/"*)
+            set_wallpaper "$user_input"
+            exit 0
+        ;;
         *)
             # using a code like 8ojvek
             echo "using wallheaven"
