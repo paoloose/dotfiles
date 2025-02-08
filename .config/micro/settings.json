@@ -4,7 +4,6 @@
     "mkparents": true,
     "parsecursor": true,
     "saveundo": true,
-    "softwrap": true,
     "tabstospaces": true,
     "wordwrap": true
 }
