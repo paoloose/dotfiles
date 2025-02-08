@@ -11,6 +11,9 @@ main_home="/home/paolo"
 # https://zsh.sourceforge.io/Doc/Release/Options.html
 
 setopt autocd # no need to write `cd` to change a directory
+
+# completions
+fpath=($main_home/.zsh/zsh-completions/src $fpath)
 autoload -Uz compinit && compinit
 
 # -- nice word jumping and deleting
@@ -23,9 +26,9 @@ bindkey "^[[1;5D" backward-word # ctrl + left
 bindkey "^H" backward-delete-word # ctrl + backspace
 bindkey '^[[3;5~' delete-word # ctrl + delete
 
-# -- Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=100000
-SAVEHIST=100000
+# -- Keep inf lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=6969696969
+SAVEHIST=$HISTSIZE
 HISTFILE=~/.zsh_history
 
 # -- colors for less
@@ -41,6 +44,8 @@ export FLYCTL_INSTALL="$main_home/.fly"
 export GOPATH="$main_home/.local/go"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
 export PNPM_HOME="$main_home/.config/local/share/pnpm"
+export ANDROID_HOME="/opt/Android/Sdk/"
+export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 export DENO_INSTALL="$main_home/.deno"
 export BUN_INSTALL="$main_home/.bun"
 
@@ -49,6 +54,7 @@ export GITIN_VIMKEYS=false
 # gh: arpitbbhayani/py-prompts
 #export PYTHONSTARTUP=/home/paolo/.py-prompts/themes/simple-colors.py
 export WINEPREFIX=~/.wine32
+export KUBE_EDITOR=micro
 
 # -- Manual aliases
 alias ls='lsd --group-dirs=first'
@@ -114,6 +120,7 @@ paths=(
   $DENO_INSTALL/bin
   $BUN_INSTALL/bin
   /opt/datagrip/bin/
+  $main_home/.pub-cache/bin
 )
 
 for p in ${(Oa)paths}; do
