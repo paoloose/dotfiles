@@ -34,8 +34,9 @@ HISTFILE=~/.zsh_history
 # -- colors for less
 export LESS='-S -R --use-color -Dd+r$Du+b'
 
-# -- disable microsoft spyware for dotnet
+# -- disable spywares
 export DOTNET_CLI_TELEMETRY_OPTOUT="1"
+export SAM_CLI_TELEMETRY=0
 
 # -- fly.io cli
 export FLYCTL_INSTALL="$main_home/.fly"
@@ -49,7 +50,7 @@ export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 export DENO_INSTALL="$main_home/.deno"
 export BUN_INSTALL="$main_home/.bun"
 
-export GITIN_LINESIZE=15
+export GITIN_LINESIZE=24
 export GITIN_VIMKEYS=false
 # gh: arpitbbhayani/py-prompts
 #export PYTHONSTARTUP=/home/paolo/.py-prompts/themes/simple-colors.py
@@ -95,10 +96,17 @@ gclone() {
 }
 mkgo () { mkdir -p $1 && cd $1 }
 startaws () {
+    profile=$1
+
+    if [ -z "$1" ]; then
+        printf 'no profile provided'
+        return 1
+    fi
+
     autoload bashcompinit && bashcompinit
     autoload -Uz compinit && compinit
     complete -C '/usr/local/bin/aws_completer' aws
-    export AWS_PROFILE="probaar-aws-iam"
+    export AWS_PROFILE="$profile"
 }
 
 paths=(
@@ -121,6 +129,7 @@ paths=(
   $BUN_INSTALL/bin
   /opt/datagrip/bin/
   $main_home/.pub-cache/bin
+  $main_home/.spicetify/
 )
 
 for p in ${(Oa)paths}; do
@@ -156,3 +165,5 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 
 # bun completions
 [ -s "/home/paolo/.bun/_bun" ] && source "/home/paolo/.bun/_bun"
+
+export PATH=$PATH:/home/paolo/.spicetify
