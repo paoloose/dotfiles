@@ -80,9 +80,14 @@ Install the GTK theme
 ```sh
 mkdir ~/repos && cd ~/repos
 git clone --depth=1 https://github.com/vinceliuice/Colloid-gtk-theme
+
+# Replace Colloid by your preferred theme and variant
 cd Colloid-gtk-theme
 ./install.sh --color dark --theme grey --tweaks normal black
-cp -r ~/.themes/Colloid-Grey-Dark/gtk-4.0/* ~/.config/gtk-4.0/
+
+cp -r ~/.config/local/share/themes/Colloid-Grey-Dark/gtk-3.0/* ~/.config/gtk-3.0
+cp -r ~/.config/local/share/themes/Colloid-Grey-Dark/gtk-2.0/* ~/.config/gtk-2.0
+cp -r ~/.config/local/share/themes/Colloid-Grey-Dark/gtk-4.0/* ~/.config/gtk-4.0
 ```
 
 Other utilities:
