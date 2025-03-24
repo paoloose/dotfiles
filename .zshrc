@@ -99,14 +99,14 @@ startaws () {
     profile=$1
 
     if [ -z "$1" ]; then
-        printf 'no profile provided'
-        return 1
+        echo 'No profile provided'
+    else
+        export AWS_PROFILE="$profile"
     fi
 
     autoload bashcompinit && bashcompinit
     autoload -Uz compinit && compinit
     complete -C '/usr/local/bin/aws_completer' aws
-    export AWS_PROFILE="$profile"
 }
 
 paths=(
