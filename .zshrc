@@ -49,6 +49,7 @@ export ANDROID_HOME="/opt/Android/Sdk/"
 export NDK_HOME="$ANDROID_HOME/ndk/$(ls -1 $ANDROID_HOME/ndk)"
 export DENO_INSTALL="$main_home/.deno"
 export BUN_INSTALL="$main_home/.bun"
+export PYENV_ROOT="$main_home/.pyenv"
 
 export GITIN_LINESIZE=24
 export GITIN_VIMKEYS=false
@@ -130,6 +131,7 @@ paths=(
   /opt/datagrip/bin/
   $main_home/.pub-cache/bin
   $main_home/.spicetify/
+  $PYENV_ROOT/bin
 )
 
 for p in ${(Oa)paths}; do
@@ -143,8 +145,7 @@ eval "`fnm env`"
 . "$main_home/.cargo/env"
 [ -s "$main_home/.bun/_bun" ] && source "$main_home/.bun/_bun"
 
-export PYENV_ROOT="$main_home/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+command -v pyenv >/dev/null
 # eval "$(pyenv init -)"
 # Load pyenv-virtualenv automatically by adding the following to ~/.bashrc:
 # eval "$(pyenv virtualenv-init -)"
@@ -165,5 +166,3 @@ command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 
 # bun completions
 [ -s "/home/paolo/.bun/_bun" ] && source "/home/paolo/.bun/_bun"
-
-export PATH=$PATH:/home/paolo/.spicetify
