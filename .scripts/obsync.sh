@@ -53,7 +53,7 @@ error_exit() {
 shift 1 || error_exit "No environment name provided. Run with obsync.sh [environment name]"
 
 function cleanup {
-    error_exit "It is no clear what happened. But I cannot say it was successful. Pretty much an error yeah. Script was aborted."
+    error_exit "It is no clear what happened. But I cannot say it was successful. Pretty much an error yeah. Script was aborted btw."
 }
 
 trap 'cleanup' ERR
@@ -67,3 +67,5 @@ $OBSIDIAN_BIN $@ || error_exit "Obsidian just closed unexpectedly. Changes will 
 git add . || error_exit "git add command failed"
 git commit -m "latest notes for $environment" || error_exit "Nothing to commit"
 git push origin main || error_exit "Failed to push changes"
+
+error_exit "Files pushed succesfully! This error is actualy a notice"
