@@ -60,12 +60,13 @@ trap 'cleanup' ERR
 
 cd $OBSIDIAN_DIR
 git stash || error_exit "Failed to stash changes"
-git pull origin main || error_exit "Failed to pull changes from upstream"
+git pull --rebase origin main || error_exit "Failed to pull changes from upstream"
 git stash pop || :
 $OBSIDIAN_BIN $@ || error_exit "Obsidian just closed unexpectedly. Changes will be saved anyway" || :
 
 git add . || error_exit "git add command failed"
 git commit -m "latest notes for $environment" || error_exit "Nothing to commit"
+git pull --rebase origin main || error_exit "Failed to pull changes before changing. Unable to push."
 git push origin main || error_exit "Failed to push changes"
 
 error_exit "Files pushed succesfully! This error is actualy a notice"
