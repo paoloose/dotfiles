@@ -169,7 +169,7 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit i3 shor
 
 default_border normal 1
 default_floating_border normal 2
-for_window [all] title_format "<small>%title | %class</small>"
+for_window [all] title_format "  <small>%title | %class</small>  "
 #for_window [all] title_format "%title | %class"
 title_align center
 focus_follows_mouse yes
