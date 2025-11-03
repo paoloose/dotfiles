@@ -163,6 +163,10 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit i3 shor
 # Tip: to see class name of a window, run `xprop` and click on the window.
 # class name is in WM_CLASS(STRING) property (the second string)
 
+# Wacom Tablet
+exec_always --no-startup-id xsetwacom set "Wacom Intuos BT S Pad pad" Button 1 "key XF86Launch1"
+bindsym XF86Launch1 exec --no-startup-id /home/paolo/.scripts/wacom_toggle_screen.sh
+
 # -------------------------------------
 # --------- Window management ---------
 # -------------------------------------
@@ -242,12 +246,13 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+Control+m mode "window modifiers [s]ticky [b]order [i]con [g]aps"
-mode "window modifiers [s]ticky [b]order [i]con [g]aps" {
+bindsym $mod+Control+m mode "window modifiers [s]ticky [b]order [i]con [g]aps [w]allpaper"
+mode "window modifiers [s]ticky [b]order [i]con [g]aps [w]allpaper" {
     bindsym s sticky            toggle, mode "default"
     bindsym b border            toggle, mode "default"
     bindsym i title_window_icon toggle, mode "default"
     bindsym g gaps inner all    toggle 3, mode "default"
+    bindsym w exec --no-startup-id feh --bg-fill "$(hellpaper ~/.assets/wallpapers)", mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -289,6 +294,7 @@ bindsym --release $mod+shift+Print exec --no-startup-id flameshot gui \
 # -- Screen zoom with https://github.com/tsoding/boomer
 
 bindsym $mod+z exec --no-startup-id boomer
+bindsym $mod+x exec --no-startup-id xcolor -s
 
 # Window capture
 
@@ -318,8 +324,8 @@ for_window [window_type="dialog"]       floating enable, border none
 for_window [window_role="bubble"]       floating enable, border none
 for_window [window_type="menu"]         floating enable, border none
 for_window [title="__floating__"]       floating enable, border none
-for_window [floating]                   border none
 for_window [title="__portrait__"]       floating enable, border pixel 1
+for_window [floating]                   border none
 
 # Layout tabbed for first workspace of each monitor
 for_window [workspace=$ws1]  layout tabbed
