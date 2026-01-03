@@ -16,12 +16,13 @@ general {
     separator = "="
 }
 
-#order += "battery all"
+# order += "battery all"
 order += "wireless _first_"
 
 order += "ethernet _first_"
 order += "disk /"
-order += "load"
+#order += "load"
+order += "cpu_usage"
 order += "memory"
 order += "volume master"
 order += "tztime local"
@@ -36,9 +37,14 @@ ethernet _first_ {
     format_down = "🌚 no ethernet"
 }
 
-#battery all {
-#   format = "%status %percentage %remaining"
-#}
+cpu_usage {
+    format = "%usage"
+}
+
+battery all {
+   format = "%status %percentage %remaining"
+   path = "/org/freedesktop/UPower/devices/headset_dev_84_AC_60_29_38_63"
+}
 
 disk "/" {
     # format = "%avail"
