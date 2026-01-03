@@ -1,11 +1,13 @@
+# use main_home to target only in your main user
+# use $HOME to target per-user home
+main_home="/home/paolo"
+
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":$main_home/.zsh/completions:"* ]]; then export FPATH="$main_home/.zsh/completions:$FPATH"; fi
 # -- Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-# use main_home to target only in your main user
-# use $HOME to target per-user home
-main_home="/home/paolo"
 
 # -- zsh options
 # https://zsh.sourceforge.io/Doc/Release/Options.html
@@ -41,6 +43,13 @@ export SAM_CLI_TELEMETRY=0
 # -- fly.io cli
 export FLYCTL_INSTALL="$main_home/.fly"
 
+# pnpm
+export PNPM_HOME="$main_home/.config/local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 # -- some tools setup
 export GOPATH="$main_home/.local/go"
 export JAVA_HOME="/usr/lib/jvm/java-17-openjdk-amd64"
@@ -54,7 +63,7 @@ export PYENV_ROOT="$main_home/.pyenv"
 export GITIN_LINESIZE=24
 export GITIN_VIMKEYS=false
 # gh: arpitbbhayani/py-prompts
-#export PYTHONSTARTUP=/home/paolo/.py-prompts/themes/simple-colors.py
+#export PYTHONSTARTUP=$main_home/.py-prompts/themes/simple-colors.py
 export WINEPREFIX=~/.wine32
 export KUBE_EDITOR=micro
 
@@ -101,12 +110,14 @@ startaws () {
 
     if [ -z "$1" ]; then
         echo 'No profile provided'
+        echo 'Expected one of: rpaoloose, paoloose, probaar'
+        return 1
     else
         export AWS_PROFILE="$profile"
     fi
 
     autoload bashcompinit && bashcompinit
-    autoload -Uz compinit && compinit
+    # autoload -Uz compinit && compinit
     complete -C '/usr/local/bin/aws_completer' aws
 }
 
@@ -165,4 +176,4 @@ command -v pyenv >/dev/null
 . ~/.config/powerlevel10k/powerlevel10k.zsh-theme
 
 # bun completions
-[ -s "/home/paolo/.bun/_bun" ] && source "/home/paolo/.bun/_bun"
+[ -s "$main_home/.bun/_bun" ] && source "$main_home/.bun/_bun"
